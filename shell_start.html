@@ -1,0 +1,20 @@
+<canvas id="starfield"></canvas>
+<div class="vignette-overlay"></div>
+
+<header>
+  <div class="logo" onclick="app.showScreen('screen0')">🔭 THE RELIGARE</div>
+  <nav>
+    <button id="nav-btn-screen0" onclick="app.showScreen('screen0')">Home</button>
+    <button id="nav-btn-screen2" onclick="app.showScreen('screen2')">Religions</button>
+    <button id="nav-btn-screen4" onclick="app.showScreen('screen4')">Compare</button>
+    <button id="nav-btn-screen5" onclick="app.showScreen('screen5')">Practices</button>
+    <button id="nav-btn-screen7" onclick="app.showScreen('screen7')">Quiz</button>
+    <button id="nav-btn-screen8" onclick="app.showScreen('screen8')">Timeline</button>
+    <button id="nav-btn-screen9" onclick="app.showScreen('screen9')">Progress</button>
+    <div class="progress-stars" id="nav-stars">
+      <!-- Stars populated by JS -->
+    </div>
+  </nav>
+</header>
+
+<main id="app">

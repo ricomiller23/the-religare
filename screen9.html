@@ -1,0 +1,46 @@
+<div id="screen9" class="screen">
+  <div class="heading-36 text-center text-gold">THE SCHOLAR's JOURNAL</div>
+  <div class="heading-22 text-center text-muted">Your records and study materials.</div>
+
+  <div class="two-column" style="margin-top: 40px; align-items: flex-start;">
+    
+    <!-- LEFT COL: STATS & NOTES -->
+    <div class="left-col" style="width: 40%;">
+      <div style="background: var(--bg-card); padding: 25px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 30px;">
+        <div class="heading-22 text-gold">OBSERVATORY METRICS</div>
+        <div id="journal-stats" style="margin-top: 15px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.8;">
+          <!-- Content populated via app.renderJournal() -->
+        </div>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+        <div class="heading-22 text-gold">PRIVATE NOTES</div>
+        <p class="text-muted" style="font-size: 14px; margin-bottom: 15px;">Your notes are saved locally in this browser.</p>
+        
+        <label class="text-blue" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; display:block; margin-bottom: 5px;">✝ CATHOLICISM NOTES</label>
+        <textarea id="notes-catholicism" style="width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-family: 'Inter', sans-serif;"></textarea>
+
+        <label class="text-fire" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; display:block; margin-bottom: 5px;">🔥 ZOROASTRIANISM NOTES</label>
+        <textarea id="notes-zoroastrianism" style="width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-family: 'Inter', sans-serif;"></textarea>
+
+        <label class="text-rose" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; display:block; margin-bottom: 5px;">🌹 ROSICRUCIANISM NOTES</label>
+        <textarea id="notes-rosicrucianism" style="width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-family: 'Inter', sans-serif;"></textarea>
+        
+        <button class="btn-small" style="width: 100%; border: 1px solid var(--border); background: transparent; color: var(--text-primary);" onclick="app.saveState(); alert('Notes saved locally.')">SAVE NOTES</button>
+      </div>
+    </div>
+
+    <!-- RIGHT COL: FLASHCARDS -->
+    <div class="right-col" style="width: 55%;">
+      <div class="heading-22 text-gold" style="margin-bottom: 20px; display:flex; justify-content: space-between; align-items: center;">
+        <span>MEMORY FLASHCARDS</span>
+        <span class="text-muted" style="font-size: 12px; font-family: 'Inter', sans-serif;">Click to flip</span>
+      </div>
+      
+      <div id="journal-flashcards" style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <!-- Content populated via app.renderJournal() -->
+      </div>
+    </div>
+
+  </div>
+</div>

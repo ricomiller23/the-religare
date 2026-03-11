@@ -1,0 +1,101 @@
+<div id="screen4" class="screen" style="max-width: 1200px;">
+  <div class="heading-36 text-center text-gold">THE RELIGARE GRID — All Three Religions, Side by Side</div>
+  <div class="heading-22 text-center text-muted">This is the nutritional label. Turn it sideways.</div>
+  
+  <div style="margin: 30px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+    <input type="text" id="grid-search" placeholder="Filter by keyword..." style="padding: 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); width: 100%; max-width: 300px;" onkeyup="
+      const term = this.value.toLowerCase();
+      document.querySelectorAll('#compare-tbody tr').forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(term) ? '' : 'none';
+        if (term.length > 2) {
+          row.querySelectorAll('td').forEach(td => {
+            if(td.innerText.toLowerCase().includes(term)) { td.style.background = 'rgba(245, 200, 66, 0.1)'; }
+            else { td.style.background = ''; }
+          });
+        } else {
+          row.querySelectorAll('td').forEach(td => td.style.background = '');
+        }
+      });
+    ">
+  </div>
+
+  <div class="compare-table-wrapper">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width: 150px;">LABEL</th>
+          <th class="text-blue">✝ CATHOLICISM</th>
+          <th class="text-fire">🔥 ZOROASTRIANISM</th>
+          <th class="text-rose">🌹 ROSICRUCIANISM</th>
+        </tr>
+      </thead>
+      <tbody id="compare-tbody">
+        <tr>
+          <td><strong class="text-gold">🕰️ TIME & PLACE</strong></td>
+          <td>~30 AD spiritual / 325 AD institutional. Jerusalem → Rome. Roman Empire era.</td>
+          <td>1500–600 BCE. Ancient Persia / Central Asian steppes. Pre-Axial Age.</td>
+          <td>1614–1616 AD. Protestant Germany. Age of Reformation & Scientific Revolution.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">👤 FOUNDER</strong></td>
+          <td>Jesus of Nazareth (spiritual) / Emperor Constantine (institutional). Two founders, 300 years apart.</td>
+          <td>Zarathustra / Zoroaster. Single prophetic reformer. Historical person, dates disputed.</td>
+          <td>Christian Rosenkreuz (legendary/fictional). Probable real author: Johann Valentin Andreae, Lutheran theologian.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">📖 SACRED TEXT</strong></td>
+          <td>The Holy Bible (Old + New Testament). Compiled over centuries. Canon finalized by councils.</td>
+          <td>The Avesta (especially the Gathas — Zoroaster's own hymns). Written in ancient Avestan. Much destroyed by Alexander the Great.</td>
+          <td>Three manifestos: Fama Fraternitatis (1614), Confessio Fraternitatis (1615), Chemical Wedding (1616). Pamphlets, not scripture in traditional sense.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">🌍 ORIGIN CULTURE</strong></td>
+          <td>Jewish → Greco-Roman Mediterranean. Absorbed Greek philosophy + Roman administrative structure.</td>
+          <td>Ancient Indo-Iranian / Persian. Shared ancestral roots with Vedic India. State religion of three Persian empires.</td>
+          <td>Protestant Renaissance Germany. Synthesized from Lutheranism, Hermeticism, Kabbalah, alchemy, and Paracelsian natural philosophy.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">🌌 CREATION MYTH</strong></td>
+          <td>Genesis: God creates ex nihilo in 6 days. Adam and Eve. The Fall. Universe ends at Last Judgment.</td>
+          <td>Ahura Mazda creates universe. Angra Mainyu opposes. Cosmic battle. Universe ends at Frashokereti — universal renovation and resurrection.</td>
+          <td>No creation myth. Cosmological framework: God wrote two books — Scripture AND Nature. Universe as living divine text. Christ as supreme alchemist.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">⚖️ CORE BELIEFS</strong></td>
+          <td>Holy Trinity. Original Sin. Salvation by grace. Seven Sacraments. Papal authority. Heaven / Purgatory / Hell.</td>
+          <td>Ahura Mazda (one God). Cosmic dualism (good vs evil, good wins). Free will. Good Thoughts / Good Words / Good Deeds. Sacred fire. Angels. Chinvat Bridge judgment.</td>
+          <td>Secret ancient wisdom. Universal reformation. Alchemical inner transformation (7 stages). Christ at center. Scripture + Nature = two divine books. Free healing service.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">🎯 FUNCTIONAL PURPOSE</strong></td>
+          <td>Unify the Roman Empire. Provide social order, psychological comfort, cultural continuity. Become the organizing institution of Western civilization for 2,000 years.</td>
+          <td>Universalize ethics for the first time. Provide moral framework for Persian imperial governance. Seed the theological vocabulary of all Abrahamic faiths.</td>
+          <td>Propose a synthesis of faith and reason at the exact moment they were at war. Give intellectual permission for scientific inquiry within a Christian framework. Provoke a universal reformation of knowledge.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">💰 POWER STRUCTURE</strong></td>
+          <td>Hierarchical and centralized. Pope → Cardinals → Bishops → Priests → Laity. God mediated through institution. Essential for sacraments.</td>
+          <td>Priestly Magi class. No single central authority. Survived without central institution. Fire temple priests maintain sacred fires. Notably decentralized.</td>
+          <td>Deliberately leaderless and invisible. No hierarchy visible to outside world. Members wear local clothing. Self-renewing cells. The most anti-institutional structure possible.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">🔗 RELIGIOUS LINEAGE</strong></td>
+          <td>Judaism → Early Christianity → Roman Catholicism → Protestant sects. Upstream: Zoroastrianism → Judaism → Christianity.</td>
+          <td>Proto-Indo-Iranian religion → Zoroastrian reformation → influenced Judaism, Greek philosophy, Mahayana Buddhism, Christianity, Islam. The root system.</td>
+          <td>Ancient Hermeticism + Kabbalah + Christian mysticism + Renaissance Neoplatonism + Protestant Reformation → Rosicrucianism → Freemasonry → Modern Western esotericism.</td>
+        </tr>
+        <tr>
+          <td><strong class="text-gold">🌊 RELEVANCE & LEGACY</strong></td>
+          <td>1.3 billion practitioners. Largest institution in human history. Shaped all of Western art, law, education, music, philosophy. Still headquartered in Rome.</td>
+          <td>Only ~120,000 practitioners — but the doctrines of angels, Satan, Messiah, resurrection, apocalypse, and cosmic dualism in every Abrahamic faith are Zoroastrian inventions.</td>
+          <td>Never institutionalized originally. Ideas absorbed by Freemasonry, Enlightenment philosophy, Jung's psychology, New Age movements. Small modern organizations worldwide.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center" style="margin-top: 50px;">
+    <button class="btn-gold" style="width: 380px;" onclick="app.showScreen('screen5'); app.markSectionComplete('screen4');">VIEW MYSTICAL PRACTICES COMPARISON →</button>
+  </div>
+</div>
