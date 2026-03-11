@@ -463,36 +463,47 @@ main {
 
 /* Timeline */
 .timeline-container {
-  overflow-x: auto;
-  padding: 40px 0;
-  white-space: nowrap;
   position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
 }
-.timeline-track {
-  height: 4px;
+.timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
   background: var(--border);
-  position: relative;
-  width: max(100%, 2000px);
-  margin-top: 50px;
 }
 .timeline-event {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  position: absolute;
-  top: -6px;
-  cursor: pointer;
-  z-index: 2;
-  transition: transform 0.2s;
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 50px;
 }
-.timeline-event:hover { transform: scale(1.5); }
-.timeline-label {
+.timeline-event::before {
+  content: '';
   position: absolute;
-  top: -40px;
-  transform: translateX(-50%);
-  font-size: 12px;
+  left: 14px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--accent-gold);
+  z-index: 2;
+}
+.timeline-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
   color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+.timeline-content {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
 }
 
 /* Quiz Specific */
