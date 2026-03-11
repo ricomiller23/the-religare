@@ -1,4 +1,4 @@
-const app = {
+window.app = {
   state: {
     completedSections: [],
     quizScores: [],
@@ -169,7 +169,7 @@ const app = {
       stars.forEach(star => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = \`rgba(255, 255, 255, \${star.o})\`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.o})`;
         ctx.fill();
         
         star.y -= star.s;
@@ -217,15 +217,15 @@ const app = {
   renderQuizQuestion() {
     const q = this.quizState.currentQuestions[this.quizState.currentIndex];
     const container = document.getElementById('quiz-q-container');
-    document.getElementById('quiz-progress').innerText = \`Question \${this.quizState.currentIndex + 1} of \${this.quizState.currentQuestions.length}\`;
+    document.getElementById('quiz-progress').innerText = `Question ${this.quizState.currentIndex + 1} of ${this.quizState.currentQuestions.length}`;
     
-    let html = \`<div class="heading-22 text-center">\${q.q}</div>\`;
+    let html = `<div class="heading-22 text-center">${q.q}</div>`;
     q.options.forEach((opt, idx) => {
-      html += \`<button class="quiz-option" onclick="app.answerQuiz(\${idx}, this)">\${String.fromCharCode(65 + idx)}) \${opt}</button>\`;
+      html += `<button class="quiz-option" onclick="app.answerQuiz(${idx}, this)">${String.fromCharCode(65 + idx)}) ${opt}</button>`;
     });
     
-    html += \`<div id="quiz-feedback" style="display:none; margin-top: 20px; padding: 15px; border-radius: 4px;"></div>\`;
-    html += \`<button id="quiz-next-btn" class="btn-gold" style="display:none; width: 100%; margin-top:20px;" onclick="app.nextQuizQuestion()">NEXT QUESTION →</button>\`;
+    html += `<div id="quiz-feedback" style="display:none; margin-top: 20px; padding: 15px; border-radius: 4px;"></div>`;
+    html += `<button id="quiz-next-btn" class="btn-gold" style="display:none; width: 100%; margin-top:20px;" onclick="app.nextQuizQuestion()">NEXT QUESTION →</button>`;
     
     container.innerHTML = html;
   },
@@ -247,13 +247,13 @@ const app = {
       btnElement.style.animation = 'starBurst 300ms ease';
       feedback.style.background = 'rgba(46, 204, 138, 0.2)';
       feedback.style.border = '1px solid var(--accent-teal)';
-      feedback.innerHTML = \`<strong class="text-teal">✓ CORRECT!</strong> \${q.ext}\`;
+      feedback.innerHTML = `<strong class="text-teal">✓ CORRECT!</strong> ${q.ext}`;
     } else {
       btnElement.classList.add('wrong');
       this.quizState.answeredMissed.push(q);
       feedback.style.background = 'rgba(192, 57, 43, 0.2)';
       feedback.style.border = '1px solid var(--accent-rose)';
-      feedback.innerHTML = \`<strong class="text-rose">✗ The answer is \${String.fromCharCode(65 + q.a)}.</strong> \${q.ext}\`;
+      feedback.innerHTML = `<strong class="text-rose">✗ The answer is ${String.fromCharCode(65 + q.a)}.</strong> ${q.ext}`;
     }
     
     document.getElementById('quiz-next-btn').style.display = 'block';
@@ -285,32 +285,32 @@ const app = {
     if (score > 20) level = "Initiate — 'You can read the label'";
     if (score > 25) level = "Adept — 'The telescope is yours'";
     
-    let html = \`
+    let html = `
       <div class="text-center">
-        <div class="heading-48 text-gold">\${score} / \${total}</div>
-        <div class="heading-22">Discernment Level: \${level}</div>
+        <div class="heading-48 text-gold">${score} / ${total}</div>
+        <div class="heading-22">Discernment Level: ${level}</div>
       </div>
       <div class="gold-divider"><span>RESULTS</span></div>
-    \`;
+    `;
     
     if (score === total && total === 30) {
-      html += \`
+      html += `
         <div style="text-align:center; margin: 40px 0; animation: starBurst 2s infinite;">
           <div class="heading-28 text-gold">The telescope does not lie. You have learned to see.</div>
           <p>90% of everything you know is still wrong. Keep looking.</p>
         </div>
-      \`;
+      `;
     }
     
     if (this.quizState.answeredMissed.length > 0) {
-      html += \`<div class="heading-22">Topics to Review:</div><ul>\`;
+      html += `<div class="heading-22">Topics to Review:</div><ul>`;
       this.quizState.answeredMissed.forEach(q => {
-        html += \`<li style="margin-bottom: 10px;">\${q.q} <br><a href="#" onclick="app.showScreen('screen3'+ (q.category==='catholicism'?'a':q.category==='zoroastrianism'?'b':'c')); return false;" class="text-gold">Review \${q.category.toUpperCase()} Module →</a></li>\`;
+        html += `<li style="margin-bottom: 10px;">${q.q} <br><a href="#" onclick="app.showScreen('screen3'+ (q.category==='catholicism'?'a':q.category==='zoroastrianism'?'b':'c')); return false;" class="text-gold">Review ${q.category.toUpperCase()} Module →</a></li>`;
       });
-      html += \`</ul>\`;
+      html += `</ul>`;
     }
     
-    html += \`<div class="text-center"><button class="btn-gold" onclick="app.initQuiz()">TAKE THE QUIZ AGAIN</button></div>\`;
+    html += `<div class="text-center"><button class="btn-gold" onclick="app.initQuiz()">TAKE THE QUIZ AGAIN</button></div>`;
     resultDiv.innerHTML = html;
   },
 
@@ -321,25 +321,25 @@ const app = {
     if (fcContainer) {
       let fhtml = '';
       FLASHCARDS.forEach((card, idx) => {
-        fhtml += \`
+        fhtml += `
           <div class="flip-card" onclick="app.toggleFlipCard(this)" style="max-width:300px; display:inline-block; margin: 10px;">
             <div class="flip-card-inner">
-              <div class="flip-card-front">\${card.f}</div>
-              <div class="flip-card-back">\${card.b}</div>
+              <div class="flip-card-front">${card.f}</div>
+              <div class="flip-card-back">${card.b}</div>
             </div>
           </div>
-        \`;
+        `;
       });
       fcContainer.innerHTML = fhtml;
     }
 
     // Notes
     ['catholicism', 'zoroastrianism', 'rosicrucianism'].forEach(rel => {
-      const ta = document.getElementById(\`notes-\${rel}\`);
+      const ta = document.getElementById(`notes-${rel}`);
       if (ta) {
-        ta.value = this.state[\`notes_\${rel}\`] || '';
+        ta.value = this.state[`notes_${rel}`] || '';
         ta.oninput = (e) => {
-          this.state[\`notes_\${rel}\`] = e.target.value;
+          this.state[`notes_${rel}`] = e.target.value;
           this.saveState();
         };
       }
@@ -350,11 +350,11 @@ const app = {
     if (statsContainer) {
       const bestScore = this.state.quizScores.reduce((max, s) => s.score > max ? s.score : max, 0);
       const mins = Math.floor(this.state.timeSpentSeconds / 60);
-      statsContainer.innerHTML = \`
-        <p><strong>Total Time in Observatory:</strong> \${mins} minutes</p>
-        <p><strong>Highest Quiz Score:</strong> \${bestScore} / 30</p>
-        <p><strong>Modules Unlocked:</strong> \${this.state.completedSections.length} / 15</p>
-      \`;
+      statsContainer.innerHTML = `
+        <p><strong>Total Time in Observatory:</strong> ${mins} minutes</p>
+        <p><strong>Highest Quiz Score:</strong> ${bestScore} / 30</p>
+        <p><strong>Modules Unlocked:</strong> ${this.state.completedSections.length} / 15</p>
+      `;
     }
   },
 
@@ -373,7 +373,7 @@ const app = {
     document.body.appendChild(floatBtn);
 
     // Modals
-    const modalsHtml = \`
+    const modalsHtml = `
       <div id="telescope-modal" class="modal-overlay">
         <div class="modal-content">
           <button class="modal-close" onclick="app.closeModal('telescope-modal')">×</button>
@@ -388,7 +388,7 @@ const app = {
           <p id="context-text" style="font-size:16px;"></p>
         </div>
       </div>
-    \`;
+    `;
     document.body.insertAdjacentHTML('beforeend', modalsHtml);
   }
 };
