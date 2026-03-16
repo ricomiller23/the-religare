@@ -7,62 +7,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
 :root {
-  --bg-primary: #F8FAFC;
-  --bg-glass: rgba(255, 255, 255, 0.45);
-  --bg-glass-heavy: rgba(255, 255, 255, 0.7);
-  --accent-primary: #1A1A1A;
-  --accent-glow: rgba(0, 0, 0, 0.05);
-  --text-primary: #1A1A1A;
-  --text-muted: #64748B;
-  --text-accent: #3B82F6;
-  --border-glass: rgba(255, 255, 255, 0.6);
-  --blur-radius: 40px;
-  --radius-lg: 32px;
-  --radius-pill: 50px;
-  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+  --bg-deep: #0a0b1a;
+  --bg-card: #11132a;
+  --bg-panel: #1a1d3a;
+  --accent-gold: #f5c842;
+  --accent-fire: #e8621a;
+  --accent-rose: #c0392b;
+  --accent-blue: #3b8fd4;
+  --accent-teal: #2ecc8a;
+  --text-primary: #e8e8f0;
+  --text-muted: #8888aa;
+  --text-gold: #f5c842;
+  --border: #2a2d50;
+  --star: #ffffff;
 }
-
-@keyframes blob {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-.blob-container {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: -1;
-  overflow: hidden;
-  background-color: var(--bg-primary);
-}
-
-.blob {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  animation: blob 20s infinite alternate;
-}
-
-.blob-1 { top: -100px; left: -100px; background: #E0F2FE; }
-.blob-2 { top: 20%; right: -100px; background: #F3E8FF; animation-delay: -5s; }
-.blob-3 { bottom: -100px; left: 20%; background: #DCFCE7; animation-delay: -10s; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-deep);
   color: var(--text-primary);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   font-size: 16px;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, .cinzel {
@@ -72,7 +41,16 @@ h1, h2, h3, h4, h5, .cinzel {
 
 .mono { font-family: 'JetBrains Mono', monospace; }
 
-
+/* Canvas Background */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
 
 /* App Wrapper */
 #app {
@@ -83,35 +61,39 @@ h1, h2, h3, h4, h5, .cinzel {
   flex-direction: column;
 }
 
-
+/* Vignette overlay */
+.vignette-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+}
 
 /* Top Nav Bar */
 header {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(var(--blur-radius));
-  -webkit-backdrop-filter: blur(var(--blur-radius));
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-pill);
+  top: 0;
+  width: 100%;
+  background: rgba(10, 11, 26, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
   z-index: 100;
-  padding: 12px 30px;
+  padding: 10px 20px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: var(--shadow-soft);
 }
 
 header .logo {
   font-family: 'Cinzel', serif;
-  color: var(--accent-primary);
-  font-size: 20px;
-  font-weight: 700;
+  color: var(--accent-gold);
+  font-size: 22px;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -127,22 +109,13 @@ header nav button {
   color: var(--text-muted);
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
+  transition: color 300ms ease;
+  padding: 5px 10px;
 }
 
-header nav button:hover {
+header nav button:hover, header nav button.active {
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
-}
-
-header nav button.active {
-  color: #fff;
-  background: var(--accent-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .progress-stars {
@@ -151,7 +124,7 @@ header nav button.active {
   color: var(--text-muted);
   align-items: center;
 }
-.progress-stars .star.earned { color: var(--accent-gold); text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+.progress-stars .star.earned { color: var(--accent-gold); animation: starBurst 300ms ease; }
 
 /* Screens */
 main {
@@ -175,8 +148,6 @@ main {
 
 .screen.active {
   display: block;
-  opacity: 1;
-  visibility: visible;
 }
 
 /* Typography Helpers */
@@ -194,25 +165,24 @@ main {
 
 /* Buttons */
 .btn-gold {
-  background: var(--accent-primary);
-  border: none;
-  color: #fff;
-  padding: 14px 28px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  padding: 12px 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
   cursor: pointer;
-  border-radius: var(--radius-pill);
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 4px;
+  transition: all 300ms ease-in-out;
   display: inline-block;
   margin-top: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 .btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: var(--accent-gold);
+  color: var(--bg-deep);
+  box-shadow: 0 0 15px rgba(245, 200, 66, 0.4);
 }
-.btn-small { padding: 8px 20px; font-size: 14px; border-radius: var(--radius-pill); }
+.btn-small { padding: 8px 16px; font-size: 14px; font-family: 'Inter', sans-serif;}
 
 /* Cards */
 .card-grid {
@@ -224,31 +194,30 @@ main {
 }
 
 .card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(var(--blur-radius));
-  -webkit-backdrop-filter: blur(var(--blur-radius));
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
   width: 250px;
   cursor: pointer;
-  transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 300ms ease-in-out;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
 }
 
-.card-blue, .card-fire, .card-rose { border-color: var(--border-glass); }
-.card-blue:hover, .card-fire:hover, .card-rose:hover { box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); }
+.card-blue { border-color: rgba(59, 143, 212, 0.3); }
+.card-blue:hover { box-shadow: inset 0 0 20px rgba(59, 143, 212, 0.2), 0 5px 15px rgba(0,0,0,0.5); }
+.card-fire { border-color: rgba(232, 98, 26, 0.3); }
+.card-fire:hover { box-shadow: inset 0 0 20px rgba(232, 98, 26, 0.2), 0 5px 15px rgba(0,0,0,0.5); }
+.card-rose { border-color: rgba(192, 57, 43, 0.3); }
+.card-rose:hover { box-shadow: inset 0 0 20px rgba(192, 57, 43, 0.2), 0 5px 15px rgba(0,0,0,0.5); }
 
-.card-icon { font-size: 32px; margin-bottom: 15px; display: block; }
-.card-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+.card-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+.card-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: bold; margin-bottom: 5px; }
 
 /* Dividers */
 .gold-divider {
@@ -262,7 +231,7 @@ main {
   top: 50%;
   left: 0;
   right: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(245, 200, 66, 0.3);
   z-index: 1;
 }
 .gold-divider span {
@@ -289,40 +258,37 @@ main {
 /* Accordion components */
 .accordion { margin-top: 20px; }
 .accordion-item {
-  border: 1px solid var(--border-glass);
-  background: var(--bg-glass);
-  backdrop-filter: blur(var(--blur-radius));
-  margin-bottom: 15px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
 .accordion-header {
-  padding: 18px 24px;
+  padding: 15px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
   color: var(--text-primary);
   background: none;
   border: none;
   width: 100%;
   text-align: left;
 }
-.accordion-header:hover { background: rgba(255,255,255,0.4); }
+.accordion-header:hover { background: rgba(255,255,255,0.05); }
 .accordion-content {
-  padding: 0 24px;
+  padding: 0 15px;
   max-height: 0;
   overflow: hidden;
-  transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: max-height 300ms ease, padding 300ms ease;
   color: var(--text-muted);
 }
 .accordion-item.open .accordion-content {
-  padding: 20px 24px;
+  padding: 15px;
   max-height: 1000px;
-  border-top: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border);
 }
 
 /* Module Layout */
@@ -335,14 +301,12 @@ main {
   width: 250px;
   flex-shrink: 0;
   position: sticky;
-  top: 120px;
+  top: 100px;
   height: max-content;
-  background: var(--bg-glass);
-  backdrop-filter: blur(var(--blur-radius));
-  padding: 24px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-soft);
+  background: var(--bg-panel);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 .module-sidebar nav button {
   display: block;
@@ -350,22 +314,17 @@ main {
   text-align: left;
   background: none;
   border: none;
-  padding: 10px 14px;
+  padding: 8px;
   color: var(--text-muted);
   cursor: pointer;
-  border-radius: 12px;
+  border-left: 2px solid transparent;
   transition: all 0.2s;
   font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
 }
 .module-sidebar nav button:hover, .module-sidebar nav button.active {
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
-}
-.module-sidebar nav button.active {
-  background: var(--accent-primary);
-  color: #fff;
+  border-left-color: var(--accent-gold);
+  background: rgba(255,255,255,0.05);
 }
 .module-content {
   flex: 1;
@@ -395,7 +354,7 @@ main {
 
 @keyframes lensFlare {
   0% { background: transparent; }
-  50% { background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 60%); }
+  50% { background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 60%); }
   100% { background: transparent; }
 }
 
@@ -433,25 +392,22 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   box-sizing: border-box;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-glass);
-  backdrop-filter: blur(var(--blur-radius));
-  box-shadow: var(--shadow-soft);
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 .flip-card-front {
-  background-color: var(--bg-glass);
+  background-color: var(--bg-card);
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
 }
 .flip-card-back {
-  background-color: var(--bg-glass-heavy);
+  background-color: var(--bg-panel);
   color: var(--text-primary);
   transform: rotateY(180deg);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* Progress bar inside sections */
@@ -484,7 +440,7 @@ main {
   border: none;
   cursor: pointer;
   z-index: 999;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(245, 200, 66, 0.4);
   transition: transform 0.3s;
 }
 #telescope-btn:hover { transform: scale(1.1); }
@@ -500,22 +456,19 @@ main {
   min-width: 800px;
 }
 .compare-table th {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  padding: 20px;
+  font-family: 'Cinzel', serif;
+  padding: 15px;
   text-align: left;
-  border-bottom: 1px solid var(--border-glass);
-  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 2px solid var(--accent-gold);
+  background: var(--bg-panel);
 }
 .compare-table td {
-  padding: 20px;
-  border-bottom: 1px solid var(--border-glass);
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
   vertical-align: top;
   font-size: 14px;
-  color: var(--text-muted);
 }
-.compare-table tr:last-child td { border-bottom: none; }
-.compare-table tr:hover { background: rgba(0, 0, 0, 0.02); }
+.compare-table tr:hover { background: rgba(255,255,255,0.02); }
 
 /* Timeline */
 .timeline-container {
@@ -616,41 +569,6 @@ main {
   .compare-table th { color: black; border-bottom: 2px solid black; }
   .compare-table td { color: black; border-bottom: 1px solid #ccc; }
 }
-
-/* Additional Mobile Responsiveness */
-@media (max-width: 768px) {
-  /* Main Content Offset */
-  main {
-    padding-top: 160px; 
-  }
-  
-  header {
-    width: 95%;
-    padding: 10px 15px;
-    top: 10px;
-  }
-  
-  header .logo { font-size: 16px; }
-  header nav { gap: 5px; }
-  header nav button { padding: 6px 10px; font-size: 12px; }
-  
-  /* Typography Scaling */
-  .heading-48 { font-size: 32px; }
-  .heading-36 { font-size: 28px; }
-  .heading-28 { font-size: 24px; }
-  .heading-22 { font-size: 20px; }
-  
-  /* Cards */
-  .card-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  .card { width: 100%; max-width: 350px; }
-}
-
-#screen0.active { display: flex !important; flex-direction: column; justify-content: center; align-items: center; }</style>
-</head>
-<body>
 <canvas id="starfield"></canvas>
 <div class="vignette-overlay"></div>
 
@@ -888,25 +806,25 @@ main {
       </div>
     </div>
 
-    <!-- CARD C: ISLAM -->
-    <div class="card card-muted" onclick="app.showScreen('screen3c')" style="width: 100%; max-width: 350px; padding: 30px 20px;">
-      <span class="card-icon text-muted text-center" style="font-size: 48px;">☪</span>
-      <div class="card-title text-muted text-center" style="margin-top: 20px;">ISLAM</div>
-      <div class="text-center" style="background: rgba(39, 174, 96, 0.2); border-radius: 4px; padding: 5px; font-size: 12px; margin-bottom: 20px; color: var(--accent-fire); font-weight: bold;">A UNIVERSAL RESTORATION</div>
+    <!-- CARD C: ROSICRUCIANISM -->
+    <div class="card card-rose" onclick="app.showScreen('screen3c')" style="width: 300px; padding: 30px 20px;">
+      <span class="card-icon text-rose text-center" style="font-size: 48px;">🌹</span>
+      <div class="card-title text-rose text-center" style="margin-top: 20px;">ROSICRUCIANISM</div>
+      <div class="text-center" style="background: rgba(192, 57, 43, 0.2); border-radius: 4px; padding: 5px; font-size: 12px; margin-bottom: 20px; color: var(--accent-rose); font-weight: bold;">THE ONE I'M CURIOUS ABOUT</div>
       
       <div style="font-size: 14px; margin-bottom: 20px;">
-        <div style="margin-bottom: 5px;"><strong>Founded:</strong> 610 CE (Mecca)</div>
-        <div style="margin-bottom: 5px;"><strong>Origin:</strong> 7th Century Arabia</div>
-        <div style="margin-bottom: 5px;"><strong>Sacred Text:</strong> The Quran</div>
-        <div style="margin-bottom: 5px;"><strong>Status:</strong> World's 2nd Largest Religion</div>
+        <div style="margin-bottom: 5px;"><strong>Founded:</strong> 1614 AD (three manifestos)</div>
+        <div style="margin-bottom: 5px;"><strong>Origin:</strong> Protestant Germany</div>
+        <div style="margin-bottom: 5px;"><strong>Sacred Text:</strong> Fama Fraternitatis (1614)</div>
+        <div style="margin-bottom: 5px;"><strong>Status:</strong> Secret Brotherhood — may never have existed</div>
       </div>
       
       <p class="text-muted" style="font-size: 14px; line-height: 1.5; margin-bottom: 30px;">
-        The Seal of the Prophets. Islam arrived as a rigorous monotheism that unified the fragmented tribes of Arabia and established a civilization that preserved global knowledge while Europe slept.
+        In 1614, three anonymous pamphlets appeared in Germany describing a secret Brotherhood with ancient wisdom. No member ever came forward. The Brotherhood may be fictional. The ideas changed the world anyway.
       </p>
       
       <div class="text-center">
-        <button class="btn-small btn-gold" style="border-color: var(--accent-fire); color: var(--accent-fire); width: 100%;">STUDY ISLAM →</button>
+        <button class="btn-small btn-gold" style="border-color: var(--accent-rose); color: var(--accent-rose); width: 100%;">STUDY ROSICRUCIANISM →</button>
       </div>
     </div>
   </div>
@@ -934,7 +852,6 @@ main {
         <button onclick="document.getElementById('cath-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
         <button onclick="document.getElementById('cath-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
         <button onclick="document.getElementById('cath-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
-        <button onclick="document.getElementById('cath-practicum').scrollIntoView({behavior:'smooth'})" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 10px;">🛠️ PRACTICUM</button>
       </nav>
       <button class="btn-small btn-gold" style="width: 100%; margin-top: 20px;" onclick="app.showContextModal('~30 AD: Death/Resurrection of Jesus\\n313 AD: Christianity Legalized\\n325 AD: Council of Nicaea')">📅 Place in Time</button>
       <button class="btn-small" style="width: 100%; margin-top: 10px; border: 1px solid var(--border); color: var(--text-muted); background: transparent;" onclick="app.showCompareDrawer()">⚖️ COMPARE</button>
@@ -1147,64 +1064,6 @@ main {
         </p>
       </div>
 
-      <div id="cath-practicum" class="module-section">
-        <div class="heading-28 text-gold">🛠️ THE RELIGARE PRACTICUM (CATHOLICISM)</div>
-        <p class="text-muted"><strong>Deliverable Date:</strong> Tuesday, March 17, 2026</p>
-        
-        <div class="accordion">
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>I. INHERITED FRAMEWORKS</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Five inherited beliefs and their genealogical sources:</p>
-              <ul>
-                <li><strong>1. Sunday Obligation:</strong> Communal worship is mandatory (Source: 3rd Commandment / Canon Law 1247).</li>
-                <li><strong>2. Hierarchical Mediation:</strong> Authority is mediated through lineage (Source: Apostolic Succession / Petrine Office).</li>
-                <li><strong>3. Ascetic Seasoning (Lent):</strong> 40-day preparation (Source: 4th Century Desert Fathers / Council of Nicaea).</li>
-                <li><strong>4. Ritual Cleansing (Confession):</strong> Naming sin for remediation (Source: Sacrament of Penance / James 5:16).</li>
-                <li><strong>5. Social Subsidiarity:</strong> Local care vs central power (Source: Catholic Social Teaching / Rerum Novarum).</li>
-              </ul>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>II. UNCOMMON SENSE PILOT (30 DAYS)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Pilot Change:</strong> The 'Silentium' Protocol (30-day digital fast/contemplation).</p>
-              <p><strong>Mapping Steps (A → B → C → D):</strong></p>
-              <p>(A) Implement 15 mins of Lectio Divina at dawn → (B) Delete non-essential social applications for 30 days → (C) Weekly 2-hour 'Silent Walk' without technology → (D) <strong>Desired Outcome:</strong> Cultivation of *Hesychia* (Inner Stillness).</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>III. REQUIREMENTS OF CHOICE (EVALUATION)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Evaluation of Recent Decision: <em>Choosing a Career Path</em></p>
-              <ul>
-                <li><strong>Agency:</strong> High. Intellectual capacity to execute the work.</li>
-                <li><strong>Freedom:</strong> Medium. Financial pressures (external coercion) were present.</li>
-                <li><strong>Options:</strong> Low. Limited by geographic constraints.</li>
-                <li><strong>Awareness:</strong> Low. Consequences of industry shifts were not fully modeled.</li>
-                <li><strong>Maturity:</strong> High. Emotional readiness to handle responsibility.</li>
-              </ul>
-              <p><strong>Consequence:</strong> The lack of 'Awareness' led to a reactive shift when the market changed.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>IV. SHADOWS OF GRACE & NON-REACTIVITY</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Area of Powerlessness:</strong> Biological aging and mortality anxiety.</p>
-              <p><strong>Non-Reactivity Plan:</strong> "Memento Mori" practice. When anxiety spikes, suspend judgment for 60 seconds and observe without reacting. Reprioritize immediate "Good Deeds".</p>
-              <p><strong>Shadow Tracking (Social Media):</strong> 7-day tracking revealed that 'Infinite Scrolling' functions as a Shadow of Grace—mimicking the desire for connection while producing ontological isolation. Impact: 40% reduction in contemplative bandwidth.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>V. ORIENTATION TOWARD GRACE (SACRED SPACE)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Research Subject:</strong> St. Patrick’s Cathedral (Gothic Architecture).</p>
-              <p><strong>Elements of Awe:</strong> Verticality of the Nave and Rib Vaults. The architecture forces the neck upward, reorienting the gaze. Stained glass filters 'raw' light into 'encoded' color, mirroring the mediation of Grace.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Footer for Module -->
       <div class="progress-line"><div class="progress-line-fill" style="width: 33%;"></div></div>
       <div class="text-center text-muted" style="margin-bottom: 30px;">
@@ -1249,7 +1108,6 @@ main {
         <button onclick="document.getElementById('zoro-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
         <button onclick="document.getElementById('zoro-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
         <button onclick="document.getElementById('zoro-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
-        <button onclick="document.getElementById('zoro-practicum').scrollIntoView({behavior:'smooth'})" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 10px;">🛠️ PRACTICUM</button>
       </nav>
       <button class="btn-small btn-gold" style="width: 100%; border-color: var(--accent-fire); color: var(--accent-fire); margin-top: 20px;" onclick="app.showContextModal('~1500 BCE: Zoroaster founded\\n538 BCE: Jews freed by Cyrus\\n330 BCE: Conquest by Alexander')">📅 Place in Time</button>
       <button class="btn-small" style="width: 100%; margin-top: 10px; border: 1px solid var(--border); color: var(--text-muted); background: transparent;" onclick="app.showCompareDrawer()">⚖️ COMPARE</button>
@@ -1487,64 +1345,6 @@ main {
         </ul>
       </div>
 
-      <div id="zoro-practicum" class="module-section">
-        <div class="heading-28 text-gold">🛠️ THE RELIGARE PRACTICUM (ZOROASTRIANISM)</div>
-        <p class="text-muted"><strong>Deliverable Date:</strong> Tuesday, March 17, 2026</p>
-        
-        <div class="accordion">
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>I. INHERITED FRAMEWORKS</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Five inherited beliefs and their genealogical sources:</p>
-              <ul>
-                <li><strong>1. Linear Time:</strong> History has a beginning and an end (Source: Frashokereti / Avestan Cosmology).</li>
-                <li><strong>2. Moral Agency:</strong> Actions impact cosmic order (Source: Asha vs Druj / The Gathas).</li>
-                <li><strong>3. Mediator Figures:</strong> Interruption of evil requires a savior (Source: Saoshyant / Yasna 51).</li>
-                <li><strong>4. Purity Rituals:</strong> Physical hygiene mirrors spiritual state (Source: Vendidad / Sadre-Kusti).</li>
-                <li><strong>5. Universal Ethics:</strong> Truth applies regardless of ethnicity (Source: Cyrus Cylinder / Zoroaster's Reform).</li>
-              </ul>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>II. UNCOMMON SENSE PILOT (30 DAYS)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Pilot Change:</strong> The 'Asha' Audit (30-day commitment to radical truth-telling).</p>
-              <p><strong>Mapping Steps (A → B → C → D):</strong></p>
-              <p>(A) Document every minor "social lie" for 7 days → (B) Commit to silence where truth is socially inconvenient for 14 days → (C) Speak objective truths in high-stakes environments for 9 days → (D) <strong>Desired Outcome:</strong> Strengthening of the *Mainyu Athra* (Mind-Fire).</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>III. REQUIREMENTS OF CHOICE (EVALUATION)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Evaluation of Recent Decision: <em>Relocating for Work</em></p>
-              <ul>
-                <li><strong>Agency:</strong> Medium. Capacity to move was limited by health.</li>
-                <li><strong>Freedom:</strong> High. No external coercion from family.</li>
-                <li><strong>Options:</strong> High. Multiple geographic offers were available.</li>
-                <li><strong>Awareness:</strong> High. Full modeling of tax and living costs was performed.</li>
-                <li><strong>Maturity:</strong> Medium. Emotional detachment from "Place" was still developing.</li>
-              </ul>
-              <p><strong>Consequence:</strong> The high 'Awareness' prevented financial loss, but 'Agency' issues caused physical strain.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>IV. SHADOWS OF GRACE & NON-REACTIVITY</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Area of Powerlessness:</strong> Political chaos and societal Druj (The Lie).</p>
-              <p><strong>Non-Reactivity Plan:</strong> "Good Thoughts" Protocol. When headlines trigger reactive anger, suspend judgment and formulate one "Good Thought" directed toward a specific local solution. Act immediately on a "Good Deed".</p>
-              <p><strong>Shadow Tracking (Validation Seeking):</strong> 7-day tracking showed that 'Social Validation' functions as a Shadow of Grace—mimicking the desire for Truth through consensus. Impact: 30% reduction in objective decision-making capacity.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>V. ORIENTATION TOWARD GRACE (SACRED SPACE)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Research Subject:</strong> Yazd Atash Behram (Fire Temple).</p>
-              <p><strong>Elements of Awe:</strong> The Eternal Flame (Atash). The fire is kept in a inner sanctum where the priest wears a veil (Panam) to avoid contaminating the purity with breath. The architecture facilitates a sensory loop: the smell of sandalwood, the sight of light, the silence of the desert — all orienting the mind toward the purity of Ahura Mazda.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Footer for Module -->
       <div class="progress-line"><div class="progress-line-fill" style="width: 66%;"></div></div>
       <div class="text-center text-muted" style="margin-bottom: 30px;">
@@ -1553,218 +1353,264 @@ main {
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <button class="btn-small" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border);" onclick="app.showScreen('screen2')">← BACK TO HUB</button>
         <button class="btn-small btn-gold" onclick="app.showScreen('screen7')">TAKE QUICK QUIZ</button>
-        <button class="btn-small" style="background: var(--accent-rose); color: white; border: none; font-family:'Cinzel';" onclick="app.showScreen('screen3c'); app.markSectionComplete('screen3b');">NEXT: ISLAM →</button>
+        <button class="btn-small" style="background: var(--accent-rose); color: white; border: none; font-family:'Cinzel';" onclick="app.showScreen('screen3c'); app.markSectionComplete('screen3b');">NEXT: ROSICRUCIANISM →</button>
       </div>
 
     </div>
   </div>
 </div>
 <div id="screen3c" class="screen">
-  <div style="background: linear-gradient(135deg, rgba(39,174,96,0.2), transparent); padding: 40px; border-radius: 8px; margin-bottom: 40px; border: 1px solid rgba(39,174,96,0.3);">
-    <div class="heading-36 text-primary">☪ ISLAM</div>
-    <div class="heading-22 text-muted">A Universal Restoration — The Seal of the Prophets</div>
+  <div style="background: linear-gradient(135deg, rgba(192,57,43,0.2), transparent); padding: 40px; border-radius: 8px; margin-bottom: 40px; border: 1px solid rgba(192,57,43,0.3);">
+    <div class="heading-36 text-rose">🌹 ROSICRUCIANISM</div>
+    <div class="heading-22 text-muted">The One I'm Curious About — The Secret That May Never Have Existed</div>
+  </div>
+
+  <div class="heading-28 cinzel text-gold text-center" style="margin: 40px 0; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.4;">
+    "What if a secret brotherhood had already solved the riddle of existence — and was waiting for the world to be ready to hear it?"
+  </div>
+
+  <div class="flip-card" onclick="app.toggleFlipCard(this)" style="margin-bottom: 60px;">
+    <div class="flip-card-inner">
+      <div class="flip-card-front text-rose" style="font-size: 24px;">Click to Open the Envelope...</div>
+      <div class="flip-card-back" style="font-size: 14px; line-height: 1.5;">In 1614, this pamphlet appeared on walls across Germany. No author was named. No Brotherhood member ever came forward. Hundreds of Europe's greatest minds wrote open letters begging to join. No one ever replied.<br><br>The Brotherhood may never have existed.<br>The ideas changed the world anyway.</div>
+    </div>
   </div>
 
   <div class="module-layout">
     <div class="module-sidebar">
       <nav>
-        <button onclick="document.getElementById('islam-time').scrollIntoView({behavior:'smooth'})">🕰️ TIME & PLACE</button>
-        <button onclick="document.getElementById('islam-founder').scrollIntoView({behavior:'smooth'})">👤 FOUNDER / PROPHET</button>
-        <button onclick="document.getElementById('islam-text').scrollIntoView({behavior:'smooth'})">📖 SACRED TEXT</button>
-        <button onclick="document.getElementById('islam-origin').scrollIntoView({behavior:'smooth'})">🌍 ORIGIN CULTURE</button>
-        <button onclick="document.getElementById('islam-myth').scrollIntoView({behavior:'smooth'})">🌌 CREATION MYTH</button>
-        <button onclick="document.getElementById('islam-belief').scrollIntoView({behavior:'smooth'})">⚖️ CORE BELIEFS</button>
-        <button onclick="document.getElementById('islam-purpose').scrollIntoView({behavior:'smooth'})">🎯 FUNCTIONAL PURPOSE</button>
-        <button onclick="document.getElementById('islam-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
-        <button onclick="document.getElementById('islam-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
-        <button onclick="document.getElementById('islam-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
-        <button onclick="document.getElementById('islam-practicum').scrollIntoView({behavior:'smooth'})" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 10px;">🛠️ PRACTICUM</button>
+        <button onclick="document.getElementById('rosi-time').scrollIntoView({behavior:'smooth'})">🕰️ TIME & PLACE</button>
+        <button onclick="document.getElementById('rosi-founder').scrollIntoView({behavior:'smooth'})">👤 FOUNDER / PROPHET</button>
+        <button onclick="document.getElementById('rosi-text').scrollIntoView({behavior:'smooth'})">📖 SACRED TEXT</button>
+        <button onclick="document.getElementById('rosi-origin').scrollIntoView({behavior:'smooth'})">🌍 ORIGIN CULTURE</button>
+        <button onclick="document.getElementById('rosi-myth').scrollIntoView({behavior:'smooth'})">🌌 CREATION MYTH</button>
+        <button onclick="document.getElementById('rosi-belief').scrollIntoView({behavior:'smooth'})">⚖️ CORE BELIEFS</button>
+        <button onclick="document.getElementById('rosi-purpose').scrollIntoView({behavior:'smooth'})">🎯 FUNCTIONAL PURPOSE</button>
+        <button onclick="document.getElementById('rosi-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
+        <button onclick="document.getElementById('rosi-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
+        <button onclick="document.getElementById('rosi-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
       </nav>
-      <button class="btn-small btn-gold" style="width: 100%; border-color: var(--accent-gold); color: var(--accent-gold); margin-top: 20px;" onclick="app.showContextModal('610 CE: First Revelation to Muhammad\\n622 CE: The Hijra (Migration to Medina)\\n632 CE: Death of Muhammad')">📅 Place in Time</button>
+      <button class="btn-small btn-gold" style="width: 100%; border-color: var(--accent-rose); color: var(--accent-rose); margin-top: 20px;" onclick="app.showContextModal('1517: Martin Luther 95 Theses\\n1610: Galileo Telescope\\n1614: Fama Fraternitatis')">📅 Place in Time</button>
       <button class="btn-small" style="width: 100%; margin-top: 10px; border: 1px solid var(--border); color: var(--text-muted); background: transparent;" onclick="app.showCompareDrawer()">⚖️ COMPARE</button>
     </div>
 
     <div class="module-content">
       
-      <div id="islam-time" class="module-section">
+      <div id="rosi-time" class="module-section">
         <div class="heading-28 text-gold">🕰️ TIME & PLACE OF ORIGIN</div>
-        <p><strong>610 CE, MECCA, ARABIA</strong> — spiritual origin.</p>
-        <p><strong>622 CE, MEDINA</strong> — institutional and political origin (The Hijra).</p>
-        <p>The world it entered: 7th-century Arabia was a fragmented landscape of tribal polytheism, blood feuds, and competing influences from the Byzantine and Sassanid Empires. Mecca was a commercial and religious hub centered around the Kaaba, then housing hundreds of idols.</p>
+        <p><strong>1614–1616, PROTESTANT GERMANY</strong><br>During the Protestant Reformation and the dawn of the Scientific Revolution.</p>
+        <p><strong>TO UNDERSTAND ROSICRUCIANISM, YOU MUST UNDERSTAND THE WORLD OF 1614:</strong></p>
+        <ul style="border-left: 2px solid var(--accent-rose); padding-left: 20px; list-style: none;">
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> Martin Luther had nailed his 95 Theses to the church door 97 years earlier (1517)</li>
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> The Thirty Years' War was about to begin (1618) — the most destructive European war before WWI</li>
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> Galileo was pointing his telescope at Jupiter's moons (1610) — and the Catholic Church was about to put him on trial</li>
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> The printing press had been running for 150 years, democratizing knowledge</li>
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> Alchemy, astrology, Kabbalah, Hermeticism, and natural philosophy were all being practiced alongside religion</li>
+          <li style="margin-bottom: 10px;"><span class="text-rose">◆</span> The air was thick with the smell of old certainties burning</li>
+        </ul>
+        <p>INTO THIS WORLD: three anonymous pamphlets appeared in Germany and spread across Europe like wildfire.</p>
         
-        <div style="background: var(--bg-card); padding: 20px; border-radius: 4px; border: 1px solid var(--border); margin-top: 20px;">
-          <div class="heading-22 text-primary">TIMELINE</div>
-          <ul class="mono text-muted" style="list-style: none; padding: 0;">
-            <li>610 CE: First Revelation in Cave Hira</li>
-            <li>622 CE: Migration to Medina (Year 0 of Islamic Calendar)</li>
-            <li>630 CE: Conquest of Mecca</li>
-            <li>632 CE: Death of Muhammad</li>
-            <li>632-661: Rashidun Caliphate (Rightly Guided Caliphs)</li>
-            <li>750-1258: Islamic Golden Age</li>
-          </ul>
-        </div>
+        <p><strong>THE FUNDAMENTAL QUESTION OF THE AGE:</strong><br>Which is the authority — the Church OR Reason?</p>
+        <p>Rosicrucianism proposed a third path: they are not enemies. True Christianity and true knowledge of nature are partners. God wrote two books: Scripture AND Nature.</p>
       </div>
 
-      <div id="islam-founder" class="module-section">
+      <div id="rosi-founder" class="module-section">
         <div class="heading-28 text-gold">👤 FOUNDER / PROPHET</div>
-        <p><strong>MUHAMMAD IBN ABDULLAH (570–632 CE)</strong> — The Seal of the Prophets.</p>
-        <p>Unlike founders who were purely spiritual teachers or later institutional formalizers, Muhammad was simultaneously a religious visionary, a political leader, and a military commander. He did not claim to found a NEW religion, but to RESTORE the original monotheism of Abraham (*Ibrahim*).</p>
-        
-        <div style="background: rgba(39, 174, 96, 0.1); padding: 15px; border-left: 4px solid var(--accent-gold); margin: 20px 0;">
-          <strong>⚠️ RELIGARE OBSERVATION:</strong> Muhammad represents the complete synthesis of spiritual and temporal authority within a single lifetime. This makes Islam the most "functional" and "integrated" of the major traditions from its point of origin.
+        <p><strong>THE LEGENDARY FOUNDER: CHRISTIAN ROSENKREUZ</strong></p>
+        <p>According to the manifestos:</p>
+        <ul>
+          <li>Born 1378 in Germany (at the height of the Black Death)</li>
+          <li>Traveled to Damascus, Arabia, and Egypt as a young man</li>
+          <li>Learned secret ancient wisdom from Eastern sages</li>
+          <li>Discovered the 'Book M' (Book of the World / Nature)</li>
+          <li>Returned to Germany and founded the Brotherhood of the Rosy Cross (initially 4, then 8 members)</li>
+          <li>Died 1484 at age 106 — entombed in a magnificent 7-sided vault</li>
+          <li>His vault was 'rediscovered' 120 years later — the occasion for the Brotherhood's public announcement</li>
+        </ul>
+
+        <div style="background: rgba(245, 200, 66, 0.1); padding: 15px; border-left: 4px solid var(--accent-gold); margin: 20px 0;">
+          <strong>⚠️ RELIGARE REALITY CHECK:</strong><br>Christian Rosenkreuz is almost certainly FICTIONAL. He is now regarded by scholars as a legendary character — not a historical person.
+        </div>
+
+        <p><strong>THE PROBABLE REAL AUTHOR: JOHANN VALENTIN ANDREAE (1586–1654)</strong><br>A Lutheran theologian and intellectual from Württemberg, Germany. He later called the manifestos a <em>ludibrium</em> (a joke or game) — which has only deepened the mystery. Was he joking? Covering himself? Or telling the truth?</p>
+        <p><strong>THE DEEPER POINT:</strong> Whether the Brotherhood existed or not is irrelevant to the Religare. The IDEAS were entirely real. And they spread everywhere.</p>
+      </div>
+
+      <div id="rosi-text" class="module-section">
+        <div class="heading-28 text-gold">📖 SACRED TEXT</div>
+        <p><strong>THE THREE MANIFESTOS:</strong></p>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>📜 FAMA FRATERNITATIS (1614)</span><span>▼</span></button>
+            <div class="accordion-content">
+              'Fame/Report of the Brotherhood'<br><strong>THE FOUNDING DOCUMENT.</strong><br>Tells the legend of Christian Rosenkreuz. Issues a call to the learned men of Europe.<br><br>
+              <strong>THE SIX RULES OF THE BROTHERHOOD:</strong><br>
+              1. Heal the sick for free<br>
+              2. Wear no special clothing — blend in locally<br>
+              3. Meet once a year at the 'House of the Holy Spirit'<br>
+              4. Each brother chooses his own successor<br>
+              5. Use 'R.C.' as your only seal and mark<br>
+              6. Keep the order secret for 100 years
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>📜 CONFESSIO FRATERNITATIS (1615)</span><span>▼</span></button>
+            <div class="accordion-content">
+              'Confession/Declaration of the Brotherhood'<br>More explicitly religious. Attacks the Catholic Church and the Pope. Praises recent astronomical discoveries (Copernicus/Galileo). Calls for a universal reformation of knowledge AND religion.<br><br>Key claim: <strong>'God has written two books: Scripture and Nature.'</strong>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>📜 THE CHEMICAL WEDDING OF CHRISTIAN ROSENKREUZ (1616)</span><span>▼</span></button>
+            <div class="accordion-content">
+              'Chymische Hochzeit'<br><strong>THE MYSTICAL MASTERPIECE.</strong><br>A 7-day allegorical journey to a royal wedding. The most complex of the three — a coded alchemical allegory in which each day represents a stage of spiritual transformation.<br><br>
+              Day 5: The King and Queen are beheaded (Nigredo — destruction of the old self)<br>
+              Day 6: Alchemical rebirth — the Philosopher's Stone<br>
+              Day 7: The restored, perfected Kingdom<br><br>
+              The Chemical Wedding is to Rosicrucianism what Dante's Divine Comedy is to Catholicism — the imaginative masterwork that reveals the full cosmological vision.
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="islam-text" class="module-section">
-        <div class="heading-28 text-gold">📖 SACRED TEXT</div>
-        <p><strong>THE QURAN</strong> — The direct, literal word of God revealed to Muhammad through the Angel Gabriel (*Jibril*).</p>
-        <p><strong>THE HADITH:</strong> The recorded sayings and actions of the Prophet, which provide the 'Sunnah' (example) for living. The Quran is the Law; the Hadith is the manual for its application.</p>
-        <p><strong>CRITICAL FACT:</strong> The Quran is considered untranslatable. It exists truly only in Arabic. The rhythm, sound, and structure are part of its divinity. For the Muslim, the Quran is not just a book *about* God; it is the presence of God made manifest in speech.</p>
-      </div>
-
-      <div id="islam-origin" class="module-section">
+      <div id="rosi-origin" class="module-section">
         <div class="heading-28 text-gold">🌍 ORIGIN CULTURE</div>
-        <p><strong>TRIBAL ARABIA → GLOBAL CALIPHATE</strong></p>
-        <p>Islam arrived as a "rigorous monotheism" that demanded the dissolution of tribal identity in favor of a universal community (*Ummah*). It absorbed:</p>
+        <p><strong>PROTESTANT RENAISSANCE GERMANY</strong></p>
+        <p>A crucible of:</p>
         <ul>
-          <li>Semitic monotheism (Judaic and Christian influences)</li>
-          <li>Persian administrative and philosophical traditions</li>
-          <li>Greek logic and science (preserved and expanded during the Golden Age)</li>
+          <li><strong>LUTHERAN REFORMATION</strong> — conviction that the Catholic Church had corrupted true Christianity; the Bible should be accessible to all; God speaks directly to the individual without institutional mediation</li>
+          <li><strong>RENAISSANCE HERMETICISM</strong> — the ancient Greek-Egyptian philosophy attributed to Hermes Trismegistus ('Thrice-Great Hermes'): 'As above, so below.' The universe is a vast living text that can be read.</li>
+          <li><strong>KABBALAH</strong> — Jewish mysticism: the hidden mathematical structure of reality encoded in the Hebrew scriptures</li>
+          <li><strong>ALCHEMY</strong> — not merely lead-into-gold, but the spiritual transformation of consciousness through systematic stages of purification</li>
+          <li><strong>PARACELSIAN MEDICINE</strong> — the physician Paracelsus (1493–1541) taught that medicine, magic, and theology were one unified science. Rosicrucian thought is deeply influenced by him.</li>
+          <li><strong>NASCENT SCIENCE</strong> — the emerging conviction that studying nature is a sacred act, not a heretical one</li>
         </ul>
       </div>
 
-      <div id="islam-myth" class="module-section">
+      <div id="rosi-myth" class="module-section">
         <div class="heading-28 text-gold">🌌 CREATION MYTH / COSMOLOGY</div>
-        <p><strong>TAWHID — The Oneness of God.</strong></p>
-        <p>God (Allah) is absolutely singular, beyond image, and the sole creator of the universe. Unlike Catholicism's Trinity, Islam's cosmology is strictly non-dual in its source of authority.</p>
+        <p><strong>ROSICRUCIANISM HAS NO CREATION MYTH</strong> in the traditional sense.<br>Instead, it has a <strong>COSMOLOGICAL FRAMEWORK:</strong></p>
         <ul>
-          <li>Universe created by divine command: "Be!" (*Kun*) and it is.</li>
-          <li>Creation is a 'Sign' (*Ayah*) pointing back to the Creator.</li>
-          <li>Humanity's purpose: To be God's *Khalifa* (Steward) on Earth.</li>
+          <li><strong>GOD IS THE SOURCE</strong> of all wisdom and all creation</li>
+          <li><strong>DIVINE WISDOM WAS DISPERSED</strong> through creation — encoded in Nature, in the stars, in the human body, in alchemical processes, in the structure of language</li>
+          <li><strong>CHRIST IS AT THE CENTER</strong> — not merely as Savior, but as the SUPREME ALCHEMIST: his death and resurrection is the template for all spiritual transformation. The crucifixion = the Nigredo (the blackening, the necessary death). The resurrection = the Rubedo (the red stone, the perfected gold).</li>
+          <li><strong>THE UNIVERSE IS A LIVING TEXT</strong> — 'As above, so below.' Physical processes have spiritual equivalents. Transformation of matter reflects transformation of consciousness.</li>
+          <li><strong>THE INVISIBLE MIRRORS THE VISIBLE:</strong> The macrocosm (universe) reflects the microcosm (human). To know the self is to know the cosmos. To transform the self is to participate in cosmic renewal.</li>
         </ul>
       </div>
 
-      <div id="islam-belief" class="module-section">
+      <div id="rosi-belief" class="module-section">
         <div class="heading-28 text-gold">⚖️ CORE BELIEF SYSTEM</div>
         <div class="accordion">
           <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>THE FIVE PILLARS</span><span>▼</span></button>
-            <div class="accordion-content">
-              1. Shahada (Faith), 2. Salat (Prayer), 3. Zakat (Charity), 4. Sawm (Fasting), 5. Hajj (Pilgrimage). These are the functional requirements of the faith.
-            </div>
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>SECRET WISDOM</span><span>▼</span></button>
+            <div class="accordion-content">The Brotherhood possesses ancient knowledge — from Egypt, Arabia, Persia — that has been hidden from the world. This knowledge is not secret because it is dangerous — it is secret because the world was not ready. The 1614 manifestos announced: the world is now ready.</div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>FITRA — The Primordial Nature</span><span>▼</span></button>
-            <div class="accordion-content">
-              Unlike the "Original Sin" of Catholicism, Islam posits *Fitra* — the belief that every human is born naturally inclined toward the good and the recognition of God. Evil is not an inherited stain, but a result of 'Ghaflah' (forgetfulness) and environmental deviation.
-            </div>
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>UNIVERSAL REFORMATION</span><span>▼</span></button>
+            <div class="accordion-content">The goal is not personal salvation alone, but the transformation of ALL of society through recovered wisdom. Science, religion, medicine, philosophy — all to be unified under a restored understanding of divine truth.</div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>SUFISM: The Inner Path</span><span>▼</span></button>
-            <div class="accordion-content">
-              The mystical dimension of Islam focused on the direct experience of God's presence. Figures like Rumi and Ibn Arabi explored the 'Polishing of the Heart' to mirror divine light.
-            </div>
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>ALCHEMICAL SPIRITUALITY</span><span>▼</span></button>
+            <div class="accordion-content">Inner transformation (the Magnum Opus — the Great Work) is the path to divine union. The seven stages of alchemy are a map of consciousness. The Philosopher's Stone is not a metal — it is a state of enlightened being.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>CHRIST AS CENTER</span><span>▼</span></button>
+            <div class="accordion-content">Despite its esoteric character, the original manifestos are firmly Christian — Christ is the source and summit of all wisdom. 'Alchemical Christianity' — the crucifixion as purification, resurrection as spiritual gold.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>TWO BOOKS OF GOD</span><span>▼</span></button>
+            <div class="accordion-content">Scripture (Bible) and Nature (the physical world) are equally valid sources of divine truth. Studying one without the other is incomplete. This is the theological permission slip for scientific inquiry within a Christian framework.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>FREE SERVICE</span><span>▼</span></button>
+            <div class="accordion-content">Members heal the sick for free — medicine as a spiritual and ethical calling, not a commercial one.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>SECRECY</span><span>▼</span></button>
+            <div class="accordion-content">The Brotherhood keeps itself hidden until the world is ready. No special clothing, no visible hierarchy — radical invisibility as a spiritual principle.</div>
           </div>
         </div>
       </div>
 
-      <div id="islam-purpose" class="module-section">
+      <div id="rosi-purpose" class="module-section">
         <div class="heading-28 text-gold">🎯 FUNCTIONAL PURPOSE</div>
-        <p><strong>RESTORATION OF ORDER:</strong> Islam unified the fragmented tribes of Arabia under a single law (*Sharia*) and a single community (*Ummah*).</p>
-        <p><strong>CULTURAL PRESERVATION:</strong> During the European Dark Ages, Islamic scholars translated and preserved Greek and Persian philosophy, mathematics, and medicine, seeding the later European Renaissance.</p>
+        <p><strong>WHAT ROSICRUCIANISM DID AT THE EXACT MOMENT IT APPEARED:</strong></p>
+        <p>In 1614, European civilization was tearing itself apart over one question: Which is the authority — the Church or Reason?</p>
+        <p>The Galileo affair (which came just four years later, 1610–1633) is the perfect symbol of this conflict at maximum tension. The Church: 'The Earth is the center. The Bible says so.' Science: 'Jupiter has moons. The telescope proves it.'</p>
+        <p>The Rosicrucian manifestos appeared BETWEEN these two positions and said: BOTH are wrong to fight. God wrote Scripture AND Nature. To study nature is to study God's second book. True Christianity and true science are allies, not enemies.</p>
+        
+        <p><strong>THE IMPACT:</strong><br>The pamphlets caused a sensation. Hundreds of Europe's greatest scholars and scientists wrote open letters addressed to the Brotherhood — begging to join, asking for contact. Nobody ever received a reply.</p>
+        <p>Among those who may have been influenced:</p>
+        <ul>
+          <li>Francis Bacon (father of the scientific method)</li>
+          <li>René Descartes (foundation of modern philosophy)</li>
+          <li>Johannes Kepler (planetary motion laws)</li>
+          <li>Robert Fludd (physician-philosopher)</li>
+          <li>Gottfried Leibniz (calculus)</li>
+        </ul>
+        <p>Whether or not the Brotherhood existed — the IDEA of a unified wisdom tradition that reconciled faith and reason gave intellectual permission to an entire generation of thinkers to pursue science without apostasy.</p>
       </div>
 
-      <div id="islam-power" class="module-section">
+      <div id="rosi-power" class="module-section">
         <div class="heading-28 text-gold">💰 POWER STRUCTURE</div>
-        <p>Islam does not have a formal priesthood. Authority is decentralized but guided by the *Ulama* (scholars of law). The primary split is between:</p>
+        <p><strong>DELIBERATELY LEADERLESS AND INVISIBLE</strong></p>
+        <p>The Brotherhood's structure (per the manifestos):</p>
         <ul>
-          <li><strong>SUNNI:</strong> Leadership based on consensus and community choice.</li>
-          <li><strong>SHIA:</strong> Leadership based on the lineage of the Prophet (Ali and the Imams).</li>
+          <li>No hierarchy visible to the outside world</li>
+          <li>No special clothing — members dress as locals</li>
+          <li>Self-renewing: each brother chooses his own successor</li>
+          <li>Annual meeting, secret location</li>
+          <li>Identified only by the letters 'R.C.'</li>
+        </ul>
+        <p>This stood in direct philosophical contrast to the rigid, visible, named hierarchy of the Catholic Church. Whether intentional or not, the Rosicrucian power structure IS a critique of institutional religion.</p>
+        
+        <p>MODERN ORGANIZATIONS (19th–20th century):</p>
+        <ul>
+          <li>AMORC (Ancient Mystical Order Rosae Crucis) — founded New York City 1915; uses mail-order lessons</li>
+          <li>The Rosicrucian Fellowship — founded Seattle 1909</li>
+          <li>Societas Rosicruciana — emerged from Freemasonry, 1866</li>
         </ul>
       </div>
 
-      <div id="islam-lineage" class="module-section">
+      <div id="rosi-lineage" class="module-section">
         <div class="heading-28 text-gold">🔗 RELIGIOUS LINEAGE</div>
-        <div class="mono text-center" style="font-size: 14px; margin: 20px 0; background: var(--bg-card); padding: 20px; border: 1px solid var(--border);">
-          ZOROASTRIANISM (Concepts of Day of Judgment, Angels)<br>
+        <div class="mono text-center text-rose" style="font-size: 14px; margin: 20px 0; background: var(--bg-card); padding: 20px; border: 1px solid var(--border);">
+          Ancient Hermeticism (Egypt/Greece, ~200 BCE)<br>
+          + Kabbalah (Jewish mysticism, ~10th century CE)<br>
+          + Christian Mysticism (Catholic contemplative tradition)<br>
+          + Renaissance Neoplatonism (Ficino, Pico della Mirandola)<br>
+          + Paracelsian natural philosophy (16th century)<br>
+          + Lutheran Protestantism (1517)<br>
           ↓<br>
-          JUDAISM (Strict Monotheism, Law)<br>
+          <strong>ROSICRUCIANISM (1614–1616)</strong><br>
           ↓<br>
-          CHRISTIANITY (Jesus as Prophet/Messiah)<br>
-          ↓<br>
-          <strong>ISLAM (Final Restoration)</strong>
+          Freemasonry (18th century — directly influenced by RC)<br>
+          Theosophy (19th century — Blavatsky)<br>
+          Golden Dawn (19th–20th century — Yeats, Crowley)<br>
+          Rudolf Steiner's Anthroposophy<br>
+          Carl Jung's analytical psychology<br>
+          Modern New Age movements
         </div>
       </div>
 
-      <div id="islam-legacy" class="module-section">
+      <div id="rosi-legacy" class="module-section">
         <div class="heading-28 text-gold">🌊 RELEVANCE & LEGACY</div>
-        <p><strong>1.9 BILLION</strong> practitioners today. The world's fastest-growing major religion. Its legacy includes modern algebra, surgical techniques, and a legal framework that continues to govern states across the globe.</p>
-      </div>
-
-      <div id="islam-practicum" class="module-section">
-        <div class="heading-28 text-gold">🛠️ THE RELIGARE PRACTICUM (ISLAM)</div>
-        <p class="text-muted"><strong>Deliverable Date:</strong> Tuesday, March 17, 2026</p>
-        
-        <div class="accordion">
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>I. INHERITED FRAMEWORKS</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Five inherited beliefs and their genealogical sources:</p>
-              <ul>
-                <li><strong>1. Ritual Purity:</strong> Prayer requires physical washing (Source: Wudu / Quran 5:6).</li>
-                <li><strong>2. Social Justice:</strong> Wealth must circulate (Source: Zakat / Quran 51:19).</li>
-                <li><strong>3. Absolute Monotheism:</strong> No association with God (Source: Tawhid / Surah Ikhlas).</li>
-                <li><strong>4. Prophetic Lineage:</strong> Faith is a restoration (Source: Sunnah / Abrahamic Covenant).</li>
-                <li><strong>5. Scriptural Integrity:</strong> The text is unchangeable (Source: Quranic Preservation / 15:9).</li>
-              </ul>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>II. UNCOMMON SENSE PILOT (30 DAYS)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Pilot Change:</strong> The 'Salat' Rhythm (30-day alignment with the five daily prayers).</p>
-              <p><strong>Mapping Steps (A → B → C → D):</strong></p>
-              <p>(A) Set 5 daily alarms to match prayer times → (B) Pause all work for 5 minutes during each window → (C) Perform a mental 'Intentionality Check' (*Niyyah*) at each pause → (D) <strong>Desired Outcome:</strong> Breaking the 'Ghaflah' (Forgetfulness) of modern productivity.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>III. REQUIREMENTS OF CHOICE (EVALUATION)</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p>Evaluation of Recent Decision: <em>Starting a New Relationship</em></p>
-              <ul>
-                <li><strong>Agency:</strong> High. Full emotional autonomy.</li>
-                <li><strong>Freedom:</strong> High. No cultural or social coercion.</li>
-                <li><strong>Options:</strong> Medium. Geographic limitations.</li>
-                <li><strong>Awareness:</strong> Medium. Future long-term compatibility not fully assessed.</li>
-                <li><strong>Maturity:</strong> High. Past failures have been integrated.</li>
-              </ul>
-              <p><strong>Consequence:</strong> The 'Maturity' led to healthy boundaries, but the lack of 'Awareness' of long-term goals caused early friction.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>IV. SHADOWS OF GRACE & NON-REACTIVITY</span><span>▼</span></button>
-            <div class="accordion-content">
-              <p><strong>Area of Powerlessness:</strong> Macro-economic instability and financial fear.</p>
-              <p><strong>Non-Reactivity Plan:</strong> "Tawakkul" Protocol. When financial anxiety spikes, acknowledge the powerlessness, suspend the "Calculating Mind" for 5 minutes, and perform one act of Charity (*Sadaqah*) to break the hoarding reflex.</p>
-              <p><strong>Shadow Tracking (Wealth Acquisition):</strong> 7-day tracking showed that 'Checking Portfolio Balances' functions as a Shadow of Grace—mimicking the desire for Security through numbers. Impact: 25% reduction in focus on immediate obligations.</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-item">
-              <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>V. ORIENTATION TOWARD GRACE (SACRED SPACE)</span><span>▼</span></button>
-              <div class="accordion-content">
-                <p><strong>Research Subject:</strong> The Sultan Ahmed Mosque (Blue Mosque).</p>
-                <p><strong>Elements of Awe:</strong> The Mihrab orientation toward Mecca. The Dome architecture creates a visual 'Ascension' for the gaze, representing the Unity of God (*Tawhid*). Calligraphy vibrates with meaning, reorienting the person from the physical house to the spiritual path.</p>
-              </div>
-            </button>
-          </div>
-        </div>
+        <p><strong>ROSICRUCIANISM NEVER BUILT A CATHEDRAL.</strong><br>It never had 1.3 billion members. It may never have had ANY members — in the original, literal sense.</p>
+        <p>And yet its influence on the modern Western mind is incalculable.</p>
+        <ul>
+          <li>The idea that science and spirituality are not enemies — foundational to the Age of Enlightenment</li>
+          <li>The inner alchemy framework — absorbed by Carl Jung into modern depth psychology (the shadow, individuation, the Self — all are alchemical concepts)</li>
+          <li>Freemasonry (which built the United States' foundational institutions) was deeply influenced by Rosicrucian symbolism and practice</li>
+          <li>The Rose Cross symbol — one of the most widely recognized esoteric symbols in the world</li>
+          <li>The concept of the 'perennial philosophy' — that all religious traditions share a common inner wisdom — traces directly to Rosicrucian thought</li>
+        </ul>
       </div>
 
       <!-- Footer for Module -->
       <div class="progress-line"><div class="progress-line-fill" style="width: 100%;"></div></div>
       <div class="text-center text-muted" style="margin-bottom: 30px;">
-        You have completed the Islam Religare Label. 3/3 Religions studied.
+        You have completed the Rosicrucianism Religare Label. 3/3 Religions studied.
       </div>
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <button class="btn-small" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border);" onclick="app.showScreen('screen2')">← BACK TO HUB</button>
@@ -2186,8 +2032,6 @@ main {
 
   </div>
 </div>
-</main>
-<script>
 const QUIZ = [
   // CATHOLICISM
   { category: 'catholicism', difficulty: 1, type: 'mc',
@@ -2291,71 +2135,56 @@ const QUIZ = [
     options: ["TRUE", "FALSE"],
     a: 0, ext: "The Zoroastrian Saoshyant (Savior) is a messianic prophecy pre-dating the Jewish Messianic tradition. It was absorbed by Judaism during the Babylonian exile (586–538 BCE)."
   },
-  // ISLAM
-  { category: 'islam', difficulty: 1, type: 'mc',
-    q: "In what year did the Prophet Muhammad receive the first revelation of the Quran?",
-    options: ["570 CE", "610 CE", "622 CE", "632 CE"],
-    a: 1, ext: "The revelations began in the Cave of Hira in 610 CE. Muhammad was 40 years old. The message was simple: There is no God but Allah."
+  // ROSICRUCIANISM
+  { category: 'rosicrucianism', difficulty: 1, type: 'mc',
+    q: "The first Rosicrucian manifesto was published in:",
+    options: ["1517", "1610", "1614", "1666"],
+    a: 2, ext: "The Fama Fraternitatis appeared in 1614, in Germany, anonymously — exactly at the fault line between the Protestant Reformation and the Scientific Revolution."
   },
-  { category: 'islam', difficulty: 1, type: 'mc',
-    q: "The word 'Islam' literally means:",
-    options: ["Peace", "Submission", "Prayer", "Holy"],
-    a: 1, ext: "Islam comes from the root 'SLM,' meaning peace through submission to the will of God. A Muslim is 'one who submits.'"
+  { category: 'rosicrucianism', difficulty: 1, type: 'mc',
+    q: "The Rosicrucian symbol combines:",
+    options: ["A star and a crescent moon", "A rose and a cross", "A flame and a triangle", "A serpent and a staff"],
+    a: 1, ext: "The Rose Cross: a blooming rose at the center of a cross. The rose = the soul blooming toward the divine. The cross = the material world, the path of purification."
   },
-  { category: 'islam', difficulty: 1, type: 'tf',
-    q: "TRUE OR FALSE: Muslims believe that Islam is a new religion started by Muhammad.",
+  { category: 'rosicrucianism', difficulty: 1, type: 'tf',
+    q: "TRUE OR FALSE: The founder of Rosicrucianism, Christian Rosenkreuz, was a real historical person.",
     options: ["TRUE", "FALSE"],
-    a: 1, ext: "Muslims believe Islam is the original, primordial faith of all prophets from Adam and Abraham to Jesus. Muhammad is seen as the 'Seal of the Prophets' who restored the pure message."
+    a: 1, ext: "Christian Rosenkreuz is regarded by scholars as a legendary, almost certainly fictional character. The probable real author was Johann Valentin Andreae."
   },
-  { category: 'islam', difficulty: 2, type: 'mc',
-    q: "The 'Night Journey' (Isra and Mi'raj) describes Muhammad traveling to which city before ascending to heaven?",
-    options: ["Medina", "Damascus", "Jerusalem", "Cairo"],
-    a: 2, ext: "Muhammad is said to have traveled from Mecca to the 'Farthest Mosque' (Jerusalem) on the winged steed Buraq, then ascended through the seven heavens to meet God."
+  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
+    q: "In Rosicrucian alchemy, 'Calcination' represents:",
+    options: ["The final stage of spiritual perfection", "The creation of the Philosopher's Stone", "The first stage — burning off the ego, false identity, and worldly attachments", "The merging of opposites in the soul"],
+    a: 2, ext: "Calcination is Stage 1 — the Nigredo. It burns off everything that is not essentially you. Often experienced as an ego-destroying crisis."
   },
-  { category: 'islam', difficulty: 2, type: 'mc',
-    q: "In Sufism (Islamic mysticism), what does the term 'Fana' mean?",
-    options: ["The creation of a perfect society", "The annihilation of the false self (ego) in God", "The strict adherence to religious law", "A state of deep mourning"],
-    a: 1, ext: "Fana-fi-Allah: 'annihilation in God.' Like a drop of water returning to the ocean, the ego is dissolved so that only the Divine remains."
+  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
+    q: "The Rosicrucian doctrine of 'Two Books of God' states:",
+    options: ["The Old and New Testaments are God's only books", "Scripture AND Nature are equally valid sources of divine truth", "Alchemy and Kabbalah are God's hidden books", "The Fama and the Confessio are the two sacred texts"],
+    a: 1, ext: "This is the theological permission slip for scientific inquiry within a Christian framework. Studying nature is studying God's second book."
   },
-  { category: 'islam', difficulty: 2, type: 'mc',
-    q: "The Islamic calendar begins with the 'Hijra.' What was the Hijra?",
-    options: ["The birth of Muhammad", "The revelation of the first verse of the Quran", "The emigration of early Muslims from Mecca to Medina", "The conquest of Mecca"],
-    a: 2, ext: "In 622 CE, to escape persecution, Muhammad and his followers moved to Medina. This marks 'Year 1' because it is when Islam became a community (Ummah) and a social force."
+  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
+    q: "Which famous movement was directly influenced by Rosicrucian ideas and helped shape the founding of the US?",
+    options: ["The Jesuits", "Freemasonry", "The Dominican Order", "The Templars"],
+    a: 1, ext: "Freemasonry absorbed Rosicrucian symbolism, structure, and philosophy extensively. Many of America's founding fathers were Freemasons."
   },
-  { category: 'islam', difficulty: 2, type: 'mc',
-    q: "Sufi 'Dhikr' practices primarily involve:",
-    options: ["Silent reading of history", "The rhythmic remembrance and repetition of the Names of God", "Studying complex mathematical formulas", "Traveling to distant lands"],
-    a: 1, ext: "Dhikr (remembrance) is the core Sufi practice. By repeating 'Allah' or 'La ilaha illa Allah,' the heart is polished until it reflects the Divine light."
+  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
+    q: "The Rose Cross Meditation (Rudolf Steiner) uses which primary technique?",
+    options: ["Repeating a sacred word to achieve mental silence", "Reading Scripture and resting in its words", "Standing before a sacred flame reciting prayers", "Constructing a symbolic image through deliberate thought and feeling BEFORE using it"],
+    a: 3, ext: "Steiner insists the symbol must be BUILT through living thought and feeling before it is used. A self-constructed symbol has 'soul-awakening power.'"
   },
-  { category: 'islam', difficulty: 3, type: 'mc',
-    q: "The secondary source of Islamic Law, which records the sayings and actions of the Prophet, is called:",
-    options: ["The Torah", "The Hadith", "The Psalms", "The Vedas"],
-    a: 1, ext: "The Quran is the verbatim word. The Hadith (traditions) provide the Sunnah (the example). Together, they form the basis of Shariah (the path)."
+  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
+    q: "The seven stages of the Rosicrucian Magnum Opus in correct order are:",
+    options: ["Dissolution → Calcination → Separation...", "Calcination → Dissolution → Separation → Conjunction → Fermentation → Distillation → Coagulation", "Calcination → Separation → Dissolution...", "Distillation → Calcination..."],
+    a: 1, ext: "Calcination (burn) → Dissolution (dissolve) → Separation (filter) → Conjunction (unite) → Fermentation (decay/rebirth) → Distillation (purify) → Coagulation (solidify)."
   },
-  { category: 'islam', difficulty: 3, type: 'mc',
-    q: "In Islamic cosmology, Jinn are sentient beings created from:",
-    options: ["Clay", "Light", "Smokeless Fire", "Water"],
-    a: 2, ext: "Angels are created from light (nur). Humans from clay (tin). Jinn from smokeless fire (marijin min nar). Jinn possess free will and can be good or bad."
+  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
+    q: "The Chemical Wedding of Christian Rosenkreuz (1616) is primarily:",
+    options: ["A literal account of a royal wedding ceremony", "A seven-day alchemical allegory representing stages of spiritual transformation", "A political pamphlet attacking the Catholic Church", "A collection of Hermetic philosophical essays"],
+    a: 1, ext: "The mystical masterpiece of Rosicrucian literature. It is an alchemical allegory representing the Great Work."
   },
-  { category: 'islam', difficulty: 3, type: 'mc',
-    q: "The Religare reveals that Catholic 'Theosis,' Zoroastrian 'Frashokereti alignment,' and Islamic 'Fana' are functionally:",
-    options: ["Opposing ideologies", "Three different names for the same functional goal: the transformation of the human being in union with the divine", "Purely political frameworks", "Scientific theories"],
-    a: 1, ext: "Strip away the cultural paint. These are three high-precision paths toward the same ontological transformation."
-  },
-  { category: 'catholicism', difficulty: 3, type: 'mc',
-    q: "In Catholic anthropology, 'Privatio Boni' (the privation of good) refers to:",
-    options: ["A lack of financial resources in the early church", "The state of the soul under Original Sin as a 'wounded' nature", "The practice of fasting during Lent", "The removal of corrupt priests"],
-    a: 1, ext: "Privatio Boni defines the human condition as entering the world in the 'negative' — not just neutral, but wounded. This creates the institutional necessity for the Church's remedial sacraments."
-  },
-  { category: 'zoroastrianism', difficulty: 3, type: 'mc',
-    q: "How does Zoroastrian 'Frashokereti' functionally differ from the Christian 'Last Judgment'?",
-    options: ["It occurs at the beginning of time instead of the end", "It focuses on a binary split of souls forever", "It is a Universal Restoration where ALL souls are eventually purified and evil is extinguished", "It has no concept of a savior figure"],
-    a: 2, ext: "Christianity's apocalypse ends in a permanent divide; Zoroastrianism's Frashokereti ends in a 'Making Wonderful' of the entire cosmos, restoring it to a perfect, unified state."
-  },
-  { category: 'islam', difficulty: 3, type: 'mc',
-    q: "The Islamic concept of 'Ghaflah' (Heedlessness) as the root of human error contrasts with the Catholic concept of:",
-    options: ["Grace", "Scholasticism", "Original Sin", "Papal Infallibility"],
-    a: 2, ext: "Religare Framework: In Catholicism, the problem is an ontological stain (Sin). In Islam, the problem is a cognitive/spiritual lapse (Heedlessness). One requires a cure; the other requires a reminder."
+  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
+    q: "The Religare reveals that Catholic 'Theosis,' Zoroastrian 'Frashokereti alignment,' and Rosicrucian 'Coagulation' are functionally:",
+    options: ["Completely different concepts", "Three different names for the same functional goal: complete transformation of human being in union with the divine", "Political concepts", "Sequential stages"],
+    a: 1, ext: "Strip away the cultural paint. Three traditions. One discovery."
   }
 ];
 
@@ -2366,29 +2195,20 @@ const FLASHCARDS = [
   { f: "Angra Mainyu", b: "The Destructive Spirit. Zoroastrian cosmic adversary of Ahura Mazda. The ancestor of the Jewish/Christian/Islamic Satan." },
   { f: "Kusti", b: "Zoroastrian sacred cord of 72 wool threads. Worn around waist. Ritually untied and retied 5+ times daily to release moral debt." },
   { f: "Atash Bahram", b: "Highest grade of Zoroastrian sacred fire. Created from 16 sources. Requires 32 priests and up to 1 year to consecrate." },
-  { f: "Quran", b: "The central sacred text of Islam. Muslims believe it is the verbatim word of God revealed to Muhammad over 23 years." },
-  { f: "Fana", b: "Islamic/Sufi concept of 'annihilation' of the ego or false self in God. The drop becoming the ocean." },
-  { f: "Hadith", b: "The recorded sayings and actions of the Prophet Muhammad. The secondary source of Islamic law and ethical guidelines." },
-  { f: "Tawhid", b: "The absolute Oneness of God in Islam. The defining doctrine that God has no partners, no equals, and no divisions." },
+  { f: "Fama Fraternitatis", b: "1614. First Rosicrucian manifesto. Tells legend of Christian Rosenkreuz. Anonymous call for universal reformation." },
+  { f: "Magnum Opus", b: "The Great Work. Rosicrucian alchemical process of complete self-transformation in 7 stages, ending in Coagulation." },
+  { f: "Philosopher's Stone", b: "In Rosicrucian spiritual alchemy: NOT a physical substance. State of enlightened consciousness achieved at Stage 7." },
+  { f: "Nigredo", b: "Alchemical 'blackening.' Stage 1 (Calcination) of the Magnum Opus. Necessary destruction of the ego and false identity." },
   { f: "Theosis", b: "Catholic doctrine: deification of the human person. Participating in divine nature while remaining a distinct creature." },
   { f: "Dark Night of the Soul", b: "John of the Cross. Bridge between Illuminative and Unitive Ways. ALL inner spiritual life goes dark. 'Purgatory before death.'" },
   { f: "Lectio Divina", b: "Sacred Reading. Benedictine practice. 4 steps: Lectio (read) → Meditatio (meditate) → Oratio (pray) → Contemplatio (rest)." },
   { f: "Saoshyant", b: "Zoroastrian Messiah. Savior figure prophesied to appear at end of time. Zoroastrian Magi followed this prophecy to Bethlehem." },
-  { f: "Dhikr", b: "Islamic 'Remembrance.' Sufi practice of repeating the names of God or sacred phrases to purify the heart and achieve presence." },
+  { f: "Mainyu Athra", b: "Zoroastrian 'mind-fire.' Inner spiritual flame that mirrors external sacred fire. Fed by Good Thoughts." },
   { f: "Nicene Creed", b: "325 AD. First official declaration of Christian faith at Council of Nicaea. Established Trinity doctrine." },
   { f: "Babylonian Exile", b: "586–538 BCE. Jews conquered by Babylon, freed by Zoroastrian King Cyrus. Jews absorbed Zoroastrian theology during this time." },
-  { f: "Sufism", b: "The mystical dimension of Islam. Focuses on the inner, spiritual journey toward God through love, discipline, and direct experience." },
+  { f: "Rose Cross Meditation", b: "Core Rosicrucian practice (Rudolf Steiner). Build symbol of black cross + 7 red roses through living thought before meditating on it." },
   { f: "Asha", b: "Zoroastrian cosmic principle of Truth, Righteousness, and Order. Opposed to Druj (the Lie). Represented by fire." },
-  { f: "Scholasticism", b: "Catholic intellectual synthesis of Faith and Reason. Formulated by Aquinas to use logic (Aristotle) in service of theology." },
-  { f: "Fitra", b: "Islamic concept of primordial natural goodness. Every human is born in a state of purity, as opposed to Original Sin." },
-  { f: "Wahdat al-wujud", b: "Sufi 'Unity of Being.' Metaphysical doctrine that all existence is a single reality manifesting in diverse forms." },
-  { f: "The Religare", b: "A telescope for belief systems. Latin: 'to bind back'. Neutral framework for extracting functional data from any belief system." },
-  { f: "Shadows of Grace", b: "Digital or physical substitutes (social media, substances) that mimic the desire for presence/connection while producing isolation or biological lethargy." },
-  { f: "Requirements of Choice", b: "The 5-point lens for evaluating true agency: Agency, Freedom, Options, Awareness, and Maturity." },
-  { f: "Uncommon Sense", b: "Deliberate 30-day pilots (A→B→C→D) designed to challenge inherited frameworks and restore cognitive/spiritual agency." },
-  { f: "Common Sense Framework", b: "The aggregate of inherited beliefs and practices that bypass conscious filters. Sources: Genealogy, Culture, Tradition." },
-  { f: "Sabr", b: "Radical Islamic patience. The disciplined suspension of reactivity to allow for centered action in alignment with Divine decree." },
-  { f: "Memento Mori", b: "Catholic practice of 'remembering death' not as morbidity, but as a grounding mechanism for reorienting toward immediate Grace." }
+  { f: "The Religare", b: "A telescope for belief systems. Latin: 'to bind back'. Neutral framework for extracting functional data from any belief system." }
 ];
 
 const INSIGHTS = [
@@ -2397,16 +2217,16 @@ const INSIGHTS = [
   "The 'Three Wise Men' in the Christmas story were Magi — Zoroastrian priests following their own 1,000-year-old prophecy of a coming Savior.",
   "Zoroastrianism invented the concept of Satan, angels, and a coming Messiah over 2,500 years ago.",
   "In 538 BCE, a Zoroastrian King (Cyrus the Great) freed the Jews from Babylon. He is praised in the Hebrew Bible as God's anointed.",
-  "Islam is currently the second-largest religion in the world, yet it shares identical roots with Judaism and Christianity.",
-  "The word 'Allah' is simply the Arabic word for 'God' — it is used by Arab Christians and Arab Jews as well as Muslims.",
+  "No one actually knows who wrote the Rosicrucian manifestos. Not a single true member ever came forward.",
+  "Carl Jung, the founder of analytical psychology, built his entire model of the unconscious on Rosicrucian alchemical concepts.",
   "Lectio Divina, the ancient Catholic prayer, is essentially a progressive relaxation into apophatic silence.",
   "In Zoroastrianism, the world is saved when the aggregate of all human 'Good Thoughts, Good Words, and Good Deeds' tips the cosmic scale.",
   "The Council of Nicaea (325 AD) was convened by a Roman Emperor who needed a unified religion to prevent his empire from splitting apart.",
-  "During the Islamic Golden Age, scholars in Baghdad were translating and preserving the works of Aristotle and Plato while Europe was in the Dark Ages.",
-  "Sufi whirling (Sema) is a moving meditation meant to symbolize the soul's movement in the cosmic dance around the Divine center.",
+  "Rosicrucianism proposed that God wrote Two Books: Scripture and Nature. Therefore, doing science is doing theology.",
+  "The 'Philosopher's Stone' of alchemy isn't a rock that turns lead into gold. Lead is the human ego. Gold is the enlightened soul.",
   "Every major Western religion's 'end of the world' scenario (resurrection, judgment, paradise) was mapped out intimately by Zoroaster first.",
   "Zoroastrianism has only 120,000 practitioners left today — but its doctrines are prayed by billions of Christians, Jews, and Muslims daily.",
-  "The Quran was revealed over 23 years, with verses often answering specific ethical or social dilemmas faced by the early community.",
+  "The chemical wedding of Christian Rosenkreuz uses the metaphor of 'beheading' to describe the necessary death of the false self.",
   "Ignation contemplation in Catholicism is basically guided active imagination — a technique psychology adopted 400 years later."
 ];
 window.app = {
@@ -2805,5 +2625,3 @@ window.app = {
 };
 
 window.onload = () => app.init();
-</script>
-</body></html>

@@ -101,56 +101,71 @@ const QUIZ = [
     options: ["TRUE", "FALSE"],
     a: 0, ext: "The Zoroastrian Saoshyant (Savior) is a messianic prophecy pre-dating the Jewish Messianic tradition. It was absorbed by Judaism during the Babylonian exile (586–538 BCE)."
   },
-  // ROSICRUCIANISM
-  { category: 'rosicrucianism', difficulty: 1, type: 'mc',
-    q: "The first Rosicrucian manifesto was published in:",
-    options: ["1517", "1610", "1614", "1666"],
-    a: 2, ext: "The Fama Fraternitatis appeared in 1614, in Germany, anonymously — exactly at the fault line between the Protestant Reformation and the Scientific Revolution."
+  // ISLAM
+  { category: 'islam', difficulty: 1, type: 'mc',
+    q: "In what year did the Prophet Muhammad receive the first revelation of the Quran?",
+    options: ["570 CE", "610 CE", "622 CE", "632 CE"],
+    a: 1, ext: "The revelations began in the Cave of Hira in 610 CE. Muhammad was 40 years old. The message was simple: There is no God but Allah."
   },
-  { category: 'rosicrucianism', difficulty: 1, type: 'mc',
-    q: "The Rosicrucian symbol combines:",
-    options: ["A star and a crescent moon", "A rose and a cross", "A flame and a triangle", "A serpent and a staff"],
-    a: 1, ext: "The Rose Cross: a blooming rose at the center of a cross. The rose = the soul blooming toward the divine. The cross = the material world, the path of purification."
+  { category: 'islam', difficulty: 1, type: 'mc',
+    q: "The word 'Islam' literally means:",
+    options: ["Peace", "Submission", "Prayer", "Holy"],
+    a: 1, ext: "Islam comes from the root 'SLM,' meaning peace through submission to the will of God. A Muslim is 'one who submits.'"
   },
-  { category: 'rosicrucianism', difficulty: 1, type: 'tf',
-    q: "TRUE OR FALSE: The founder of Rosicrucianism, Christian Rosenkreuz, was a real historical person.",
+  { category: 'islam', difficulty: 1, type: 'tf',
+    q: "TRUE OR FALSE: Muslims believe that Islam is a new religion started by Muhammad.",
     options: ["TRUE", "FALSE"],
-    a: 1, ext: "Christian Rosenkreuz is regarded by scholars as a legendary, almost certainly fictional character. The probable real author was Johann Valentin Andreae."
+    a: 1, ext: "Muslims believe Islam is the original, primordial faith of all prophets from Adam and Abraham to Jesus. Muhammad is seen as the 'Seal of the Prophets' who restored the pure message."
   },
-  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
-    q: "In Rosicrucian alchemy, 'Calcination' represents:",
-    options: ["The final stage of spiritual perfection", "The creation of the Philosopher's Stone", "The first stage — burning off the ego, false identity, and worldly attachments", "The merging of opposites in the soul"],
-    a: 2, ext: "Calcination is Stage 1 — the Nigredo. It burns off everything that is not essentially you. Often experienced as an ego-destroying crisis."
+  { category: 'islam', difficulty: 2, type: 'mc',
+    q: "The 'Night Journey' (Isra and Mi'raj) describes Muhammad traveling to which city before ascending to heaven?",
+    options: ["Medina", "Damascus", "Jerusalem", "Cairo"],
+    a: 2, ext: "Muhammad is said to have traveled from Mecca to the 'Farthest Mosque' (Jerusalem) on the winged steed Buraq, then ascended through the seven heavens to meet God."
   },
-  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
-    q: "The Rosicrucian doctrine of 'Two Books of God' states:",
-    options: ["The Old and New Testaments are God's only books", "Scripture AND Nature are equally valid sources of divine truth", "Alchemy and Kabbalah are God's hidden books", "The Fama and the Confessio are the two sacred texts"],
-    a: 1, ext: "This is the theological permission slip for scientific inquiry within a Christian framework. Studying nature is studying God's second book."
+  { category: 'islam', difficulty: 2, type: 'mc',
+    q: "In Sufism (Islamic mysticism), what does the term 'Fana' mean?",
+    options: ["The creation of a perfect society", "The annihilation of the false self (ego) in God", "The strict adherence to religious law", "A state of deep mourning"],
+    a: 1, ext: "Fana-fi-Allah: 'annihilation in God.' Like a drop of water returning to the ocean, the ego is dissolved so that only the Divine remains."
   },
-  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
-    q: "Which famous movement was directly influenced by Rosicrucian ideas and helped shape the founding of the US?",
-    options: ["The Jesuits", "Freemasonry", "The Dominican Order", "The Templars"],
-    a: 1, ext: "Freemasonry absorbed Rosicrucian symbolism, structure, and philosophy extensively. Many of America's founding fathers were Freemasons."
+  { category: 'islam', difficulty: 2, type: 'mc',
+    q: "The Islamic calendar begins with the 'Hijra.' What was the Hijra?",
+    options: ["The birth of Muhammad", "The revelation of the first verse of the Quran", "The emigration of early Muslims from Mecca to Medina", "The conquest of Mecca"],
+    a: 2, ext: "In 622 CE, to escape persecution, Muhammad and his followers moved to Medina. This marks 'Year 1' because it is when Islam became a community (Ummah) and a social force."
   },
-  { category: 'rosicrucianism', difficulty: 2, type: 'mc',
-    q: "The Rose Cross Meditation (Rudolf Steiner) uses which primary technique?",
-    options: ["Repeating a sacred word to achieve mental silence", "Reading Scripture and resting in its words", "Standing before a sacred flame reciting prayers", "Constructing a symbolic image through deliberate thought and feeling BEFORE using it"],
-    a: 3, ext: "Steiner insists the symbol must be BUILT through living thought and feeling before it is used. A self-constructed symbol has 'soul-awakening power.'"
+  { category: 'islam', difficulty: 2, type: 'mc',
+    q: "Sufi 'Dhikr' practices primarily involve:",
+    options: ["Silent reading of history", "The rhythmic remembrance and repetition of the Names of God", "Studying complex mathematical formulas", "Traveling to distant lands"],
+    a: 1, ext: "Dhikr (remembrance) is the core Sufi practice. By repeating 'Allah' or 'La ilaha illa Allah,' the heart is polished until it reflects the Divine light."
   },
-  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
-    q: "The seven stages of the Rosicrucian Magnum Opus in correct order are:",
-    options: ["Dissolution → Calcination → Separation...", "Calcination → Dissolution → Separation → Conjunction → Fermentation → Distillation → Coagulation", "Calcination → Separation → Dissolution...", "Distillation → Calcination..."],
-    a: 1, ext: "Calcination (burn) → Dissolution (dissolve) → Separation (filter) → Conjunction (unite) → Fermentation (decay/rebirth) → Distillation (purify) → Coagulation (solidify)."
+  { category: 'islam', difficulty: 3, type: 'mc',
+    q: "The secondary source of Islamic Law, which records the sayings and actions of the Prophet, is called:",
+    options: ["The Torah", "The Hadith", "The Psalms", "The Vedas"],
+    a: 1, ext: "The Quran is the verbatim word. The Hadith (traditions) provide the Sunnah (the example). Together, they form the basis of Shariah (the path)."
   },
-  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
-    q: "The Chemical Wedding of Christian Rosenkreuz (1616) is primarily:",
-    options: ["A literal account of a royal wedding ceremony", "A seven-day alchemical allegory representing stages of spiritual transformation", "A political pamphlet attacking the Catholic Church", "A collection of Hermetic philosophical essays"],
-    a: 1, ext: "The mystical masterpiece of Rosicrucian literature. It is an alchemical allegory representing the Great Work."
+  { category: 'islam', difficulty: 3, type: 'mc',
+    q: "In Islamic cosmology, Jinn are sentient beings created from:",
+    options: ["Clay", "Light", "Smokeless Fire", "Water"],
+    a: 2, ext: "Angels are created from light (nur). Humans from clay (tin). Jinn from smokeless fire (marijin min nar). Jinn possess free will and can be good or bad."
   },
-  { category: 'rosicrucianism', difficulty: 3, type: 'mc',
-    q: "The Religare reveals that Catholic 'Theosis,' Zoroastrian 'Frashokereti alignment,' and Rosicrucian 'Coagulation' are functionally:",
-    options: ["Completely different concepts", "Three different names for the same functional goal: complete transformation of human being in union with the divine", "Political concepts", "Sequential stages"],
-    a: 1, ext: "Strip away the cultural paint. Three traditions. One discovery."
+  { category: 'islam', difficulty: 3, type: 'mc',
+    q: "The Religare reveals that Catholic 'Theosis,' Zoroastrian 'Frashokereti alignment,' and Islamic 'Fana' are functionally:",
+    options: ["Opposing ideologies", "Three different names for the same functional goal: the transformation of the human being in union with the divine", "Purely political frameworks", "Scientific theories"],
+    a: 1, ext: "Strip away the cultural paint. These are three high-precision paths toward the same ontological transformation."
+  },
+  { category: 'catholicism', difficulty: 3, type: 'mc',
+    q: "In Catholic anthropology, 'Privatio Boni' (the privation of good) refers to:",
+    options: ["A lack of financial resources in the early church", "The state of the soul under Original Sin as a 'wounded' nature", "The practice of fasting during Lent", "The removal of corrupt priests"],
+    a: 1, ext: "Privatio Boni defines the human condition as entering the world in the 'negative' — not just neutral, but wounded. This creates the institutional necessity for the Church's remedial sacraments."
+  },
+  { category: 'zoroastrianism', difficulty: 3, type: 'mc',
+    q: "How does Zoroastrian 'Frashokereti' functionally differ from the Christian 'Last Judgment'?",
+    options: ["It occurs at the beginning of time instead of the end", "It focuses on a binary split of souls forever", "It is a Universal Restoration where ALL souls are eventually purified and evil is extinguished", "It has no concept of a savior figure"],
+    a: 2, ext: "Christianity's apocalypse ends in a permanent divide; Zoroastrianism's Frashokereti ends in a 'Making Wonderful' of the entire cosmos, restoring it to a perfect, unified state."
+  },
+  { category: 'islam', difficulty: 3, type: 'mc',
+    q: "The Islamic concept of 'Ghaflah' (Heedlessness) as the root of human error contrasts with the Catholic concept of:",
+    options: ["Grace", "Scholasticism", "Original Sin", "Papal Infallibility"],
+    a: 2, ext: "Religare Framework: In Catholicism, the problem is an ontological stain (Sin). In Islam, the problem is a cognitive/spiritual lapse (Heedlessness). One requires a cure; the other requires a reminder."
   }
 ];
 
@@ -161,20 +176,29 @@ const FLASHCARDS = [
   { f: "Angra Mainyu", b: "The Destructive Spirit. Zoroastrian cosmic adversary of Ahura Mazda. The ancestor of the Jewish/Christian/Islamic Satan." },
   { f: "Kusti", b: "Zoroastrian sacred cord of 72 wool threads. Worn around waist. Ritually untied and retied 5+ times daily to release moral debt." },
   { f: "Atash Bahram", b: "Highest grade of Zoroastrian sacred fire. Created from 16 sources. Requires 32 priests and up to 1 year to consecrate." },
-  { f: "Fama Fraternitatis", b: "1614. First Rosicrucian manifesto. Tells legend of Christian Rosenkreuz. Anonymous call for universal reformation." },
-  { f: "Magnum Opus", b: "The Great Work. Rosicrucian alchemical process of complete self-transformation in 7 stages, ending in Coagulation." },
-  { f: "Philosopher's Stone", b: "In Rosicrucian spiritual alchemy: NOT a physical substance. State of enlightened consciousness achieved at Stage 7." },
-  { f: "Nigredo", b: "Alchemical 'blackening.' Stage 1 (Calcination) of the Magnum Opus. Necessary destruction of the ego and false identity." },
+  { f: "Quran", b: "The central sacred text of Islam. Muslims believe it is the verbatim word of God revealed to Muhammad over 23 years." },
+  { f: "Fana", b: "Islamic/Sufi concept of 'annihilation' of the ego or false self in God. The drop becoming the ocean." },
+  { f: "Hadith", b: "The recorded sayings and actions of the Prophet Muhammad. The secondary source of Islamic law and ethical guidelines." },
+  { f: "Tawhid", b: "The absolute Oneness of God in Islam. The defining doctrine that God has no partners, no equals, and no divisions." },
   { f: "Theosis", b: "Catholic doctrine: deification of the human person. Participating in divine nature while remaining a distinct creature." },
   { f: "Dark Night of the Soul", b: "John of the Cross. Bridge between Illuminative and Unitive Ways. ALL inner spiritual life goes dark. 'Purgatory before death.'" },
   { f: "Lectio Divina", b: "Sacred Reading. Benedictine practice. 4 steps: Lectio (read) → Meditatio (meditate) → Oratio (pray) → Contemplatio (rest)." },
   { f: "Saoshyant", b: "Zoroastrian Messiah. Savior figure prophesied to appear at end of time. Zoroastrian Magi followed this prophecy to Bethlehem." },
-  { f: "Mainyu Athra", b: "Zoroastrian 'mind-fire.' Inner spiritual flame that mirrors external sacred fire. Fed by Good Thoughts." },
+  { f: "Dhikr", b: "Islamic 'Remembrance.' Sufi practice of repeating the names of God or sacred phrases to purify the heart and achieve presence." },
   { f: "Nicene Creed", b: "325 AD. First official declaration of Christian faith at Council of Nicaea. Established Trinity doctrine." },
   { f: "Babylonian Exile", b: "586–538 BCE. Jews conquered by Babylon, freed by Zoroastrian King Cyrus. Jews absorbed Zoroastrian theology during this time." },
-  { f: "Rose Cross Meditation", b: "Core Rosicrucian practice (Rudolf Steiner). Build symbol of black cross + 7 red roses through living thought before meditating on it." },
+  { f: "Sufism", b: "The mystical dimension of Islam. Focuses on the inner, spiritual journey toward God through love, discipline, and direct experience." },
   { f: "Asha", b: "Zoroastrian cosmic principle of Truth, Righteousness, and Order. Opposed to Druj (the Lie). Represented by fire." },
-  { f: "The Religare", b: "A telescope for belief systems. Latin: 'to bind back'. Neutral framework for extracting functional data from any belief system." }
+  { f: "Scholasticism", b: "Catholic intellectual synthesis of Faith and Reason. Formulated by Aquinas to use logic (Aristotle) in service of theology." },
+  { f: "Fitra", b: "Islamic concept of primordial natural goodness. Every human is born in a state of purity, as opposed to Original Sin." },
+  { f: "Wahdat al-wujud", b: "Sufi 'Unity of Being.' Metaphysical doctrine that all existence is a single reality manifesting in diverse forms." },
+  { f: "The Religare", b: "A telescope for belief systems. Latin: 'to bind back'. Neutral framework for extracting functional data from any belief system." },
+  { f: "Shadows of Grace", b: "Digital or physical substitutes (social media, substances) that mimic the desire for presence/connection while producing isolation or biological lethargy." },
+  { f: "Requirements of Choice", b: "The 5-point lens for evaluating true agency: Agency, Freedom, Options, Awareness, and Maturity." },
+  { f: "Uncommon Sense", b: "Deliberate 30-day pilots (A→B→C→D) designed to challenge inherited frameworks and restore cognitive/spiritual agency." },
+  { f: "Common Sense Framework", b: "The aggregate of inherited beliefs and practices that bypass conscious filters. Sources: Genealogy, Culture, Tradition." },
+  { f: "Sabr", b: "Radical Islamic patience. The disciplined suspension of reactivity to allow for centered action in alignment with Divine decree." },
+  { f: "Memento Mori", b: "Catholic practice of 'remembering death' not as morbidity, but as a grounding mechanism for reorienting toward immediate Grace." }
 ];
 
 const INSIGHTS = [
@@ -183,15 +207,15 @@ const INSIGHTS = [
   "The 'Three Wise Men' in the Christmas story were Magi — Zoroastrian priests following their own 1,000-year-old prophecy of a coming Savior.",
   "Zoroastrianism invented the concept of Satan, angels, and a coming Messiah over 2,500 years ago.",
   "In 538 BCE, a Zoroastrian King (Cyrus the Great) freed the Jews from Babylon. He is praised in the Hebrew Bible as God's anointed.",
-  "No one actually knows who wrote the Rosicrucian manifestos. Not a single true member ever came forward.",
-  "Carl Jung, the founder of analytical psychology, built his entire model of the unconscious on Rosicrucian alchemical concepts.",
+  "Islam is currently the second-largest religion in the world, yet it shares identical roots with Judaism and Christianity.",
+  "The word 'Allah' is simply the Arabic word for 'God' — it is used by Arab Christians and Arab Jews as well as Muslims.",
   "Lectio Divina, the ancient Catholic prayer, is essentially a progressive relaxation into apophatic silence.",
   "In Zoroastrianism, the world is saved when the aggregate of all human 'Good Thoughts, Good Words, and Good Deeds' tips the cosmic scale.",
   "The Council of Nicaea (325 AD) was convened by a Roman Emperor who needed a unified religion to prevent his empire from splitting apart.",
-  "Rosicrucianism proposed that God wrote Two Books: Scripture and Nature. Therefore, doing science is doing theology.",
-  "The 'Philosopher's Stone' of alchemy isn't a rock that turns lead into gold. Lead is the human ego. Gold is the enlightened soul.",
+  "During the Islamic Golden Age, scholars in Baghdad were translating and preserving the works of Aristotle and Plato while Europe was in the Dark Ages.",
+  "Sufi whirling (Sema) is a moving meditation meant to symbolize the soul's movement in the cosmic dance around the Divine center.",
   "Every major Western religion's 'end of the world' scenario (resurrection, judgment, paradise) was mapped out intimately by Zoroaster first.",
   "Zoroastrianism has only 120,000 practitioners left today — but its doctrines are prayed by billions of Christians, Jews, and Muslims daily.",
-  "The chemical wedding of Christian Rosenkreuz uses the metaphor of 'beheading' to describe the necessary death of the false self.",
+  "The Quran was revealed over 23 years, with verses often answering specific ethical or social dilemmas faced by the early community.",
   "Ignation contemplation in Catholicism is basically guided active imagination — a technique psychology adopted 400 years later."
 ];

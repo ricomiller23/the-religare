@@ -28,6 +28,7 @@
         <button onclick="document.getElementById('zoro-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
         <button onclick="document.getElementById('zoro-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
         <button onclick="document.getElementById('zoro-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
+        <button onclick="document.getElementById('zoro-practicum').scrollIntoView({behavior:'smooth'})" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 10px;">🛠️ PRACTICUM</button>
       </nav>
       <button class="btn-small btn-gold" style="width: 100%; border-color: var(--accent-fire); color: var(--accent-fire); margin-top: 20px;" onclick="app.showContextModal('~1500 BCE: Zoroaster founded\\n538 BCE: Jews freed by Cyrus\\n330 BCE: Conquest by Alexander')">📅 Place in Time</button>
       <button class="btn-small" style="width: 100%; margin-top: 10px; border: 1px solid var(--border); color: var(--text-muted); background: transparent;" onclick="app.showCompareDrawer()">⚖️ COMPARE</button>
@@ -265,6 +266,64 @@
         </ul>
       </div>
 
+      <div id="zoro-practicum" class="module-section">
+        <div class="heading-28 text-gold">🛠️ THE RELIGARE PRACTICUM (ZOROASTRIANISM)</div>
+        <p class="text-muted"><strong>Deliverable Date:</strong> Tuesday, March 17, 2026</p>
+        
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>I. INHERITED FRAMEWORKS</span><span>▼</span></button>
+            <div class="accordion-content">
+              <p>Five inherited beliefs and their genealogical sources:</p>
+              <ul>
+                <li><strong>1. Linear Time:</strong> History has a beginning and an end (Source: Frashokereti / Avestan Cosmology).</li>
+                <li><strong>2. Moral Agency:</strong> Actions impact cosmic order (Source: Asha vs Druj / The Gathas).</li>
+                <li><strong>3. Mediator Figures:</strong> Interruption of evil requires a savior (Source: Saoshyant / Yasna 51).</li>
+                <li><strong>4. Purity Rituals:</strong> Physical hygiene mirrors spiritual state (Source: Vendidad / Sadre-Kusti).</li>
+                <li><strong>5. Universal Ethics:</strong> Truth applies regardless of ethnicity (Source: Cyrus Cylinder / Zoroaster's Reform).</li>
+              </ul>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>II. UNCOMMON SENSE PILOT (30 DAYS)</span><span>▼</span></button>
+            <div class="accordion-content">
+              <p><strong>Pilot Change:</strong> The 'Asha' Audit (30-day commitment to radical truth-telling).</p>
+              <p><strong>Mapping Steps (A → B → C → D):</strong></p>
+              <p>(A) Document every minor "social lie" for 7 days → (B) Commit to silence where truth is socially inconvenient for 14 days → (C) Speak objective truths in high-stakes environments for 9 days → (D) <strong>Desired Outcome:</strong> Strengthening of the *Mainyu Athra* (Mind-Fire).</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>III. REQUIREMENTS OF CHOICE (EVALUATION)</span><span>▼</span></button>
+            <div class="accordion-content">
+              <p>Evaluation of Recent Decision: <em>Relocating for Work</em></p>
+              <ul>
+                <li><strong>Agency:</strong> Medium. Capacity to move was limited by health.</li>
+                <li><strong>Freedom:</strong> High. No external coercion from family.</li>
+                <li><strong>Options:</strong> High. Multiple geographic offers were available.</li>
+                <li><strong>Awareness:</strong> High. Full modeling of tax and living costs was performed.</li>
+                <li><strong>Maturity:</strong> Medium. Emotional detachment from "Place" was still developing.</li>
+              </ul>
+              <p><strong>Consequence:</strong> The high 'Awareness' prevented financial loss, but 'Agency' issues caused physical strain.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>IV. SHADOWS OF GRACE & NON-REACTIVITY</span><span>▼</span></button>
+            <div class="accordion-content">
+              <p><strong>Area of Powerlessness:</strong> Political chaos and societal Druj (The Lie).</p>
+              <p><strong>Non-Reactivity Plan:</strong> "Good Thoughts" Protocol. When headlines trigger reactive anger, suspend judgment and formulate one "Good Thought" directed toward a specific local solution. Act immediately on a "Good Deed".</p>
+              <p><strong>Shadow Tracking (Validation Seeking):</strong> 7-day tracking showed that 'Social Validation' functions as a Shadow of Grace—mimicking the desire for Truth through consensus. Impact: 30% reduction in objective decision-making capacity.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>V. ORIENTATION TOWARD GRACE (SACRED SPACE)</span><span>▼</span></button>
+            <div class="accordion-content">
+              <p><strong>Research Subject:</strong> Yazd Atash Behram (Fire Temple).</p>
+              <p><strong>Elements of Awe:</strong> The Eternal Flame (Atash). The fire is kept in a inner sanctum where the priest wears a veil (Panam) to avoid contaminating the purity with breath. The architecture facilitates a sensory loop: the smell of sandalwood, the sight of light, the silence of the desert — all orienting the mind toward the purity of Ahura Mazda.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Footer for Module -->
       <div class="progress-line"><div class="progress-line-fill" style="width: 66%;"></div></div>
       <div class="text-center text-muted" style="margin-bottom: 30px;">
@@ -273,7 +332,7 @@
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <button class="btn-small" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border);" onclick="app.showScreen('screen2')">← BACK TO HUB</button>
         <button class="btn-small btn-gold" onclick="app.showScreen('screen7')">TAKE QUICK QUIZ</button>
-        <button class="btn-small" style="background: var(--accent-rose); color: white; border: none; font-family:'Cinzel';" onclick="app.showScreen('screen3c'); app.markSectionComplete('screen3b');">NEXT: ROSICRUCIANISM →</button>
+        <button class="btn-small" style="background: var(--accent-rose); color: white; border: none; font-family:'Cinzel';" onclick="app.showScreen('screen3c'); app.markSectionComplete('screen3b');">NEXT: ISLAM →</button>
       </div>
 
     </div>
