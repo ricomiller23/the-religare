@@ -166,6 +166,57 @@ const QUIZ = [
     q: "The Islamic concept of 'Ghaflah' (Heedlessness) as the root of human error contrasts with the Catholic concept of:",
     options: ["Grace", "Scholasticism", "Original Sin", "Papal Infallibility"],
     a: 2, ext: "Religare Framework: In Catholicism, the problem is an ontological stain (Sin). In Islam, the problem is a cognitive/spiritual lapse (Heedlessness). One requires a cure; the other requires a reminder."
+  },
+  // MORMONISM
+  { category: 'mormonism', difficulty: 1, type: 'mc',
+    q: "Who is the founder of the Latter Day Saint movement?",
+    options: ["Brigham Young", "Joseph Smith Jr.", "John Wesley", "Charles Taze Russell"],
+    a: 1, ext: "Joseph Smith Jr. claimed to have received visions starting in 1820, leading to the restoration of the primitive church in 1830."
+  },
+  { category: 'mormonism', difficulty: 1, type: 'mc',
+    q: "In what year was the Book of Mormon first published?",
+    options: ["1776", "1820", "1830", "1847"],
+    a: 2, ext: "The Book of Mormon was first published in Palmyra, New York, in March 1830, just weeks before the church was formally organized."
+  },
+  { category: 'mormonism', difficulty: 1, type: 'mc',
+    q: "Which angel is said to have visited Joseph Smith to reveal the location of the golden plates?",
+    options: ["Gabriel", "Michael", "Moroni", "Raphael"],
+    a: 2, ext: "Moroni was said to be the last prophet-historian of the ancient American peoples whose records were inscribed on the plates."
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "The 'Burned-over District' refers to which geographical region?",
+    options: ["The Utah Desert", "Western and Central New York", "The Missouri Frontier", "The Ohio Valley"],
+    a: 1, ext: "This region was named for the 'fires' of religious revival during the Second Great Awakening that swept through it in the early 19th century."
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "What is the core meaning of the doctrine of 'Eternal Progression'?",
+    options: ["Slow evolution of species", "The continuous growth of the church", "The belief that humans can ultimately become as God is", "The migration from New York to Utah"],
+    a: 2, ext: "A famous Mormon couplet states: 'As man now is, God once was: As God now is, man may be.'"
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "In Mormon cosmology, where did the 'Council in Heaven' take place?",
+    options: ["In the Garden of Eden", "In a premortal existence before the Earth was created", "At the temple in Jerusalem", "In ancient America"],
+    a: 1, ext: "Mormonism teaches that all humans lived as spirit children of God before being born on Earth, where a plan for their progression was presented."
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "Where did the main body of the church settle in 1847 under Brigham Young?",
+    options: ["Nauvoo, Illinois", "Independence, Missouri", "Salt Lake Valley, Utah", "Kirtland, Ohio"],
+    a: 2, ext: "After Joseph Smith's death, Brigham Young led the pioneers west to escape persecution, establishing what would become the state of Utah."
+  },
+  { category: 'mormonism', difficulty: 3, type: 'mc',
+    q: "The 'Plan of Salvation' describes human existence as having how many primary stages?",
+    options: ["One (Earthly life)", "Two (Life and Death)", "Three (Premortal, Mortal, Postmortal)", "Four (Earth, Hell, Purgatory, Heaven)"],
+    a: 2, ext: "The Religare Label 'Creation Myth' for Mormonism maps this journey from spirit child to mortal test to degreed glory."
+  },
+  { category: 'mormonism', difficulty: 3, type: 'mc',
+    q: "The concept of 'Family Sealing' in Mormon temples is designed to:",
+    options: ["Collect genealogical records", "Ensure family members stay together in the afterlife", "Provide insurance for pioneer families", "Register members for voting"],
+    a: 1, ext: "Temple ordinances are believed to 'bind' families together eternally, extending beyond the conventional 'until death do us part.'"
+  },
+  { category: 'mormonism', difficulty: 3, type: 'tf',
+    q: "TRUE OR FALSE: Mormonism claims to be a NEW religion that replaces Christianity.",
+    options: ["TRUE", "FALSE"],
+    a: 1, ext: "Mormonism claims to be a RESTORATION of the original, primitive Christian church that was lost through a Great Apostasy."
   }
 ];
 
@@ -198,7 +249,13 @@ const FLASHCARDS = [
   { f: "Uncommon Sense", b: "Deliberate 30-day pilots (A→B→C→D) designed to challenge inherited frameworks and restore cognitive/spiritual agency." },
   { f: "Common Sense Framework", b: "The aggregate of inherited beliefs and practices that bypass conscious filters. Sources: Genealogy, Culture, Tradition." },
   { f: "Sabr", b: "Radical Islamic patience. The disciplined suspension of reactivity to allow for centered action in alignment with Divine decree." },
-  { f: "Memento Mori", b: "Catholic practice of 'remembering death' not as morbidity, but as a grounding mechanism for reorienting toward immediate Grace." }
+  { f: "Memento Mori", b: "Catholic practice of 'remembering death' not as morbidity, but as a grounding mechanism for reorienting toward immediate Grace." },
+  { f: "Golden Plates", b: "The ancient record Joseph Smith claimed to translate into the Book of Mormon, containing the history of God's dealings with the Americas." },
+  { f: "Eternal Progression", b: "Mormon doctrine that humans are the same species as God and can progress to divine status. 'As God is, man may be.'" },
+  { f: "Burned-over District", b: "19th-century region in New York where intense religious revivals occurred, serving as the birthplace of Mormonism." },
+  { f: "Plan of Salvation", b: "The Mormon cosmological map: Premortal Spirit Life → Mortal Test on Earth → Three Degrees of Glory in the Afterlife." },
+  { f: "Celestial Kingdom", b: "The highest of three degrees of glory in the LDS afterlife, where those who followed God's laws dwell in His Presence." },
+  { f: "Moroni", b: "The angel-prophet in Mormonism who appeared to Joseph Smith and revealed the location of the golden plates." }
 ];
 
 const INSIGHTS = [
@@ -217,5 +274,8 @@ const INSIGHTS = [
   "Every major Western religion's 'end of the world' scenario (resurrection, judgment, paradise) was mapped out intimately by Zoroaster first.",
   "Zoroastrianism has only 120,000 practitioners left today — but its doctrines are prayed by billions of Christians, Jews, and Muslims daily.",
   "The Quran was revealed over 23 years, with verses often answering specific ethical or social dilemmas faced by the early community.",
-  "Ignation contemplation in Catholicism is basically guided active imagination — a technique psychology adopted 400 years later."
+  "Ignation contemplation in Catholicism is basically guided active imagination — a technique psychology adopted 400 years later.",
+  "Mormonism originated in the same 'Burned-over District' of New York that produced many of America's social and religious reforms.",
+  "The Book of Mormon is considered by believers to be a companion scripture to the Bible, detailing God's dealings with ancient inhabitants of the Americas.",
+  "Mormonism's concept of 'Eternal Progression' is a radical departure from traditional Christian theology, positing that humans can become divine."
 ];

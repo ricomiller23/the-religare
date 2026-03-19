@@ -658,12 +658,11 @@ main {
   <div class="logo" onclick="app.showScreen('screen0')">🔭 THE RELIGARE</div>
   <nav>
     <button id="nav-btn-screen0" onclick="app.showScreen('screen0')">Home</button>
-    <button id="nav-btn-screen2" onclick="app.showScreen('screen2')">Religions</button>
+    <button id="nav-btn-screen2" onclick="app.showScreen('screen2')">Hub</button>
     <button id="nav-btn-screen4" onclick="app.showScreen('screen4')">Compare</button>
-    <button id="nav-btn-screen5" onclick="app.showScreen('screen5')">Practices</button>
+    <button id="nav-btn-screen10" onclick="app.showScreen('screen10')" style="color: var(--accent-gold); font-weight: bold;">Core Questions</button>
     <button id="nav-btn-screen7" onclick="app.showScreen('screen7')">Quiz</button>
-    <button id="nav-btn-screen8" onclick="app.showScreen('screen8')">Timeline</button>
-    <button id="nav-btn-screen9" onclick="app.showScreen('screen9')">Progress</button>
+    <button id="nav-btn-screen9" onclick="app.showScreen('screen9')">Journal</button>
     <div class="progress-stars" id="nav-stars">
       <!-- Stars populated by JS -->
     </div>
@@ -682,7 +681,7 @@ main {
     <br><br>
     The Religare is your telescope. It has no opinions. No answers. It is only a framework for gathering facts — a tool that lets you see past the cultural veil into the true nature of things.
     <br><br>
-    You are about to study three religions: one you know, one you know nothing about, and one you're curious about.
+    You are about to study four religions: one you know, one you know nothing about, and two you're curious about.
   </div>
 
   <div class="card-grid">
@@ -700,6 +699,11 @@ main {
       <span class="card-icon text-muted">☪</span>
       <div class="card-title text-muted">ISLAM</div>
       <div class="text-muted text-sm">A Universal Restoration</div>
+    </div>
+    <div class="card card-gold" onclick="app.showScreen('screen3d')">
+      <span class="card-icon text-gold">📜</span>
+      <div class="card-title text-gold">MORMONISM</div>
+      <div class="text-muted text-sm">The American Restoration</div>
     </div>
   </div>
 
@@ -841,7 +845,7 @@ main {
 </div>
 <div id="screen2" class="screen">
   <div class="heading-36 text-center text-gold">CHOOSE YOUR LENS</div>
-  <div class="heading-22 text-center text-muted">Three religions. Three depths of knowledge. One framework. Start anywhere.</div>
+  <div class="heading-22 text-center text-muted">Four religions. Three depths of knowledge. One framework. Start anywhere.</div>
   
   <div class="card-grid" style="align-items: stretch;">
     <!-- CARD A: CATHOLICISM -->
@@ -889,7 +893,7 @@ main {
     </div>
 
     <!-- CARD C: ISLAM -->
-    <div class="card card-muted" onclick="app.showScreen('screen3c')" style="width: 100%; max-width: 350px; padding: 30px 20px;">
+    <div class="card card-muted" onclick="app.showScreen('screen3c')" style="width: 300px; padding: 30px 20px;">
       <span class="card-icon text-muted text-center" style="font-size: 48px;">☪</span>
       <div class="card-title text-muted text-center" style="margin-top: 20px;">ISLAM</div>
       <div class="text-center" style="background: rgba(39, 174, 96, 0.2); border-radius: 4px; padding: 5px; font-size: 12px; margin-bottom: 20px; color: var(--accent-fire); font-weight: bold;">A UNIVERSAL RESTORATION</div>
@@ -909,10 +913,32 @@ main {
         <button class="btn-small btn-gold" style="border-color: var(--accent-fire); color: var(--accent-fire); width: 100%;">STUDY ISLAM →</button>
       </div>
     </div>
+
+    <!-- CARD D: MORMONISM -->
+    <div class="card card-gold" onclick="app.showScreen('screen3d')" style="width: 300px; padding: 30px 20px;">
+      <span class="card-icon text-gold text-center" style="font-size: 48px;">📜</span>
+      <div class="card-title text-gold text-center" style="margin-top: 20px;">MORMONISM</div>
+      <div class="text-center" style="background: rgba(245, 200, 66, 0.2); border-radius: 4px; padding: 5px; font-size: 12px; margin-bottom: 20px; color: var(--accent-gold); font-weight: bold;">THE AMERICAN RESTORATION</div>
+      
+      <div style="font-size: 14px; margin-bottom: 20px;">
+        <div style="margin-bottom: 5px;"><strong>Founded:</strong> 1830 CE (New York)</div>
+        <div style="margin-bottom: 5px;"><strong>Origin:</strong> 19th Century USA</div>
+        <div style="margin-bottom: 5px;"><strong>Sacred Text:</strong> The Book of Mormon</div>
+        <div style="margin-bottom: 5px;"><strong>Status:</strong> 17 Million Practitioners</div>
+      </div>
+      
+      <p class="text-muted" style="font-size: 14px; line-height: 1.5; margin-bottom: 30px;">
+        A restorationist movement that claims to return Christianity to its primitive roots. It introduced a new sacred history of the Americas and a radical cosmology of eternal progression.
+      </p>
+      
+      <div class="text-center">
+        <button class="btn-small btn-gold" style="width: 100%;">STUDY MORMONISM →</button>
+      </div>
+    </div>
   </div>
 
   <div class="text-center mt-10" style="margin-top: 50px;">
-    <button class="btn-gold" style="width: 350px;" onclick="app.showScreen('screen4')">COMPARE ALL THREE SIDE BY SIDE →</button>
+    <button class="btn-gold" style="width: 350px;" onclick="app.showScreen('screen4'); app.markSectionComplete('screen2');">COMPARE ALL THREE SIDE BY SIDE →</button>
   </div>
 </div>
 <div id="screen3a" class="screen">
@@ -1775,8 +1801,142 @@ main {
     </div>
   </div>
 </div>
+<div id="screen3d" class="screen">
+  <div style="background: linear-gradient(135deg, rgba(245,200,66,0.2), transparent); padding: 40px; border-radius: 8px; margin-bottom: 40px; border: 1px solid rgba(245,200,66,0.3);">
+    <div class="heading-36 text-gold">📜 MORMONISM</div>
+    <div class="heading-22 text-muted">The American Restoration — Building Zion on the Frontier</div>
+  </div>
+
+  <div class="module-layout">
+    <div class="module-sidebar">
+      <nav>
+        <button onclick="document.getElementById('morm-time').scrollIntoView({behavior:'smooth'})">🕰️ TIME & PLACE</button>
+        <button onclick="document.getElementById('morm-founder').scrollIntoView({behavior:'smooth'})">👤 FOUNDER / PROPHET</button>
+        <button onclick="document.getElementById('morm-text').scrollIntoView({behavior:'smooth'})">📖 SACRED TEXT</button>
+        <button onclick="document.getElementById('morm-origin').scrollIntoView({behavior:'smooth'})">🌍 ORIGIN CULTURE</button>
+        <button onclick="document.getElementById('morm-myth').scrollIntoView({behavior:'smooth'})">🌌 CREATION MYTH</button>
+        <button onclick="document.getElementById('morm-belief').scrollIntoView({behavior:'smooth'})">⚖️ CORE BELIEFS</button>
+        <button onclick="document.getElementById('morm-purpose').scrollIntoView({behavior:'smooth'})">🎯 FUNCTIONAL PURPOSE</button>
+        <button onclick="document.getElementById('morm-power').scrollIntoView({behavior:'smooth'})">💰 POWER STRUCTURE</button>
+        <button onclick="document.getElementById('morm-lineage').scrollIntoView({behavior:'smooth'})">🔗 RELIGIOUS LINEAGE</button>
+        <button onclick="document.getElementById('morm-legacy').scrollIntoView({behavior:'smooth'})">🌊 RELEVANCE & LEGACY</button>
+        <button onclick="document.getElementById('morm-practicum').scrollIntoView({behavior:'smooth'})" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 10px;">🛠️ PRACTICUM</button>
+      </nav>
+      <button class="btn-small btn-gold" style="width: 100%; border-color: var(--accent-gold); color: var(--accent-gold); margin-top: 20px;" onclick="app.showContextModal('1820 CE: First Vision\n1830 CE: Church formally organized\n1847 CE: Arrival in Salt Lake Valley')">📅 Place in Time</button>
+      <button class="btn-small" style="width: 100%; margin-top: 10px; border: 1px solid var(--border); color: var(--text-muted); background: transparent;" onclick="app.showCompareDrawer()">⚖️ COMPARE</button>
+    </div>
+
+    <div class="module-content">
+      
+      <div id="morm-time" class="module-section">
+        <div class="heading-28 text-gold">🕰️ TIME & PLACE OF ORIGIN</div>
+        <p>1820s–1830s, UPSTATE NEW YORK, USA — The 'Burned-over District.'</p>
+        <p>Mormonism emerged during the Second Great Awakening, a period of intense religious revivalism in the United States. New York's 'Burned-over District' was so-called because the 'fires of revival' had swept through it so frequently that there were no more 'unconverted souls' left to burn.</p>
+        <p>The world it entered: A young American nation expanding westward, characterized by democratic optimism, skepticism of traditional religious authority, and a search for a distinct American spiritual identity.</p>
+        
+        <div style="background: var(--bg-card); padding: 20px; border-radius: 4px; border: 1px solid var(--border); margin-top: 20px;">
+          <div class="heading-22 text-gold">TIMELINE</div>
+          <ul class="mono text-muted" style="list-style: none; padding: 0;">
+            <li>1820 CE: Joseph Smith's 'First Vision'</li>
+            <li>1823 CE: Angel Moroni visits Joseph Smith</li>
+            <li>1830 CE: Publication of the Book of Mormon</li>
+            <li>1838 CE: Extermination Order in Missouri</li>
+            <li>1844 CE: Assassination of Joseph Smith</li>
+            <li>1847 CE: Pioneer Trek to Salt Lake Valley</li>
+            <li>1890 CE: Manifesto ending plural marriage</li>
+            <li>Today: 17 Million members worldwide</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="morm-founder" class="module-section">
+        <div class="heading-28 text-gold">👤 FOUNDER / PROPHET</div>
+        <p><strong>JOSEPH SMITH JR. (1805–1844)</strong> — The Prophet.</p>
+        <p>A farmers son who claimed a restoration of the primitive church after a series of divine manifestations. He organized the church in 1830 and edited the Book of Mormon.</p>
+        <p><strong>BRIGHAM YOUNG (1801–1877)</strong> — The Lion of the Lord.</p>
+        <p>The leader who oversaw the massive migration of the Saints to the mountains of Utah after Joseph Smiths death, establishing the geographic home of the movement.</p>
+      </div>
+
+      <div id="morm-text" class="module-section">
+        <div class="heading-28 text-gold">📖 SACRED TEXT</div>
+        <p><strong>THE BOOK OF MORMON</strong> — The Keystone.</p>
+        <p>Believed to be a record of ancient American prophets. Along with the Holy Bible, the Doctrine and Covenants, and the Pearl of Great Price, it forms the 'Standard Works' of the LDS faith.</p>
+      </div>
+
+      <div id="morm-origin" class="module-section">
+        <div class="heading-28 text-gold">🌍 ORIGIN CULTURE</div>
+        <p><strong>AMERICAN FRONTIER</strong></p>
+        <p>The movement was born in the uniquely American environment of religious liberty, westward expansion, and the democratic rejection of established European state churches.</p>
+      </div>
+
+      <div id="morm-myth" class="module-section">
+        <div class="heading-28 text-gold">🌌 CREATION MYTH / COSMOLOGY</div>
+        <p><strong>ETERNAL PROGRESSION</strong></p>
+        <p>The belief that all humans existed as spirits in a premortal life with God. The Earth is a 'proving ground' where humans gain physical bodies. After death, souls progress through 'Degrees of Glory,' with the goal of returning to Gods presence and ultimately becoming like Him.</p>
+      </div>
+
+      <div id="morm-belief" class="module-section">
+        <div class="heading-28 text-gold">⚖️ CORE BELIEF SYSTEM</div>
+        <p>Monotheism (with a distinct view of the Godhead as three separate beings), continuous revelation through living prophets, the importance of family 'sealings' for eternity, and the restoration of priesthood authority.</p>
+      </div>
+
+      <div id="morm-purpose" class="module-section">
+        <div class="heading-28 text-gold">🎯 FUNCTIONAL PURPOSE</div>
+        <p><strong>SOCIETAL STABILITY & ZION-BUILDING</strong></p>
+        <p>Mormonism provided a tightly organized social structure that could sustain community life in the harsh frontier. It converted individual believers into a mobile, cooperative civilization capable of settling the American West.</p>
+      </div>
+
+      <div id="morm-power" class="module-section">
+        <div class="heading-28 text-gold">💰 POWER STRUCTURE</div>
+        <p><strong>CENTRALIZED HIERARCHY</strong></p>
+        <p>Prophet/President → First Presidency → Quorum of the Twelve Apostles. All local leadership (Bishops) is lay-ministry (unpaid specialists).</p>
+      </div>
+
+      <div id="morm-lineage" class="module-section">
+        <div class="heading-28 text-gold">🔗 RELIGIOUS LINEAGE</div>
+        <p>Restorationist Christianity → 19th-Century American Protestantism → Primitive Christianity (claimed origin).</p>
+      </div>
+
+      <div id="morm-legacy" class="module-section">
+        <div class="heading-28 text-gold">🌊 RELEVANCE & LEGACY</div>
+        <p>One of the few global religions born in the modern era. Legacy includes the state of Utah, a massive global volunteer force (missionaries), and influence on American cultural values of family and preparedness.</p>
+      </div>
+
+      <div id="morm-practicum" class="module-section">
+        <div class="heading-28 text-gold">🛠️ THE RELIGARE PRACTICUM (MORMONISM)</div>
+        <p class="text-muted">Analyzing the American Restoration through the lens of functional agency.</p>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="app.toggleAccordion(this)"><span>I. INHERITED FRAMEWORKS</span><span>▼</span></button>
+            <div class="accordion-content">
+              <ul>
+                <li><strong>1. The Sabbath:</strong> Sacred time for worship and rest.</li>
+                <li><strong>2. Tithing:</strong> Financial sacrifice for community treasury.</li>
+                <li><strong>3. Missionary Service:</strong> Sacrificing two years for global outreach.</li>
+                <li><strong>4. Food Storage:</strong> Practical readiness for calamity.</li>
+                <li><strong>5. Priesthood Duty:</strong> Lay leadership as an act of service.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer for Module -->
+      <div class="progress-line"><div class="progress-line-fill" style="width: 100%;"></div></div>
+      <div class="text-center text-muted" style="margin-bottom: 30px;">
+        You have completed the Mormonism Religare Label. 4/4 Religions studied.
+      </div>
+      <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button class="btn-small" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border);" onclick="app.showScreen('screen2')">← BACK TO HUB</button>
+        <button class="btn-small btn-gold" onclick="app.showScreen('screen7')">TAKE QUICK QUIZ</button>
+        <button class="btn-small" style="background: var(--accent-gold); color: black; border: none; font-family:'Cinzel';" onclick="app.showScreen('screen4'); app.markSectionComplete('screen3d');">GO TO COMPARISON GRID →</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <div id="screen4" class="screen" style="max-width: 1200px;">
-  <div class="heading-36 text-center text-gold">THE RELIGARE GRID — All Three Religions, Side by Side</div>
+  <div class="heading-36 text-center text-gold">THE RELIGARE GRID — All Four Religions, Side by Side</div>
   <div class="heading-22 text-center text-muted">This is the nutritional label. Turn it sideways.</div>
   
   <div style="margin: 30px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
@@ -1805,6 +1965,7 @@ main {
           <th class="text-blue">✝ CATHOLICISM</th>
           <th class="text-fire">🔥 ZOROASTRIANISM</th>
           <th class="text-primary">☪ ISLAM</th>
+          <th class="text-gold">📜 MORMONISM</th>
         </tr>
       </thead>
       <tbody id="compare-tbody">
@@ -1813,60 +1974,70 @@ main {
           <td>~30 AD spiritual / 325 AD institutional. Jerusalem → Rome. Roman Empire era.</td>
           <td>1500–600 BCE. Ancient Persia / Central Asian steppes. Pre-Axial Age.</td>
           <td>610 CE (Mecca) / 622 CE (Medina). Arabia. Transition from Tribalism to Empire.</td>
+          <td>1820s–1830s. Upstate New York, USA. 19th Century Frontier.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">👤 FOUNDER</strong></td>
           <td>Jesus of Nazareth (spiritual) / Emperor Constantine (institutional). Two founders, 300 years apart.</td>
           <td>Zarathustra / Zoroaster. Single prophetic reformer. Historical person, dates disputed.</td>
           <td>Muhammad ibn Abdullah. Seal of the Prophets. Both spiritual visionary and political leader.</td>
+          <td>Joseph Smith Jr. Restorationist prophet. Succeeded by Brigham Young (Pioneer leader).</td>
         </tr>
         <tr>
           <td><strong class="text-gold">📖 SACRED TEXT</strong></td>
           <td>The Holy Bible (Old + New Testament). Compiled over centuries. Canon finalized by councils.</td>
           <td>The Avesta (especially the Gathas). Written in ancient Avestan. Much destroyed by Alexander.</td>
           <td>The Quran (Literal word of God) + Hadith (Sunnah/sayings of Prophet). Untranslatable from Arabic.</td>
+          <td>The Book of Mormon + The Holy Bible + Doctrine & Covenants + Pearl of Great Price.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">🌍 ORIGIN CULTURE</strong></td>
           <td>Jewish → Greco-Roman Mediterranean. Absorbed Greek philosophy + Roman administrative structure.</td>
           <td>Ancient Indo-Iranian / Persian. Shared ancestral roots with Vedic India. State religion of three empires.</td>
           <td>Tribal Arabia. Unified fragmented tribes into universal community (Ummah). Absorbed Byzantine/Persian traits.</td>
+          <td>19th-Century American Frontier. Second Great Awakening revivalism.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">🌌 CREATION MYTH</strong></td>
           <td>Genesis: God creates ex nihilo in 6 days. Adam and Eve. The Fall. Universe ends at Last Judgment.</td>
           <td>Ahura Mazda creates universe. Angra Mainyu opposes. Cosmic battle. Ends at Frashokereti.</td>
           <td>Tawhid: Oneness of Allah. Universe created by command "Kun!" (Be!). Humanity as God's Khalifa (Steward).</td>
+          <td>Eternal Progression: Premortal spirit life. Council in Heaven. Mortality as an test. Godhood potential.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">⚖️ CORE BELIEFS</strong></td>
           <td>Holy Trinity. Original Sin. Salvation by grace. Seven Sacraments. Papal authority. Heaven / Hell.</td>
           <td>Ahura Mazda (one God). Good vs Evil. Good Thoughts/Words/Deeds. Sacred fire. Angels. Judgment Bridge.</td>
           <td>Five Pillars. Fitra (Primordial Nature). Absolute Monotheism. Day of Resurrection. Sharia (Path).</td>
+          <td>Restoration. Modern Priesthood Authority. Living Prophets. Family Sealings. Temple ordinances.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">🎯 FUNCTIONAL PURPOSE</strong></td>
           <td>Unify the Roman Empire. Provide social order, comfort, continuity. Organize Western civilization.</td>
           <td>Universalize ethics. Provide moral framework for governance. Seed Abrahamic theological vocabulary.</td>
           <td>Restoration of original monotheism. Unify Arabia. Preserve and expand knowledge during Golden Age.</td>
+          <td>Zion-building. Community resilience on the frontier. Provide an 'American' sacred history.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">💰 POWER STRUCTURE</strong></td>
           <td>Hierarchical and centralized. Pope → Bishops → Priests → Laity. Mediated authority.</td>
           <td>Priestly Magi class. Notably decentralized after fall of empires. Fire temple scholars.</td>
           <td>Decentralized. No formal priesthood. Guided by Ulama (scholars). Sunni/Shia split over lineage.</td>
+          <td>Highly centralized hierarchy. Prophet/Twelve/Stake/Bishop. Lay ministry (majority unpaid).</td>
         </tr>
         <tr>
           <td><strong class="text-gold">🔗 RELIGIOUS LINEAGE</strong></td>
           <td>Judaism → Catholicism. Upstream: Zoroastrianism → Judaism → Christianity.</td>
           <td>Proto-Indo-Iranian → Zoroastrian reformation. Roots of Abrahamic, Greek, and Buddhist concepts.</td>
           <td>Zoroastrianism → Judaism → Christianity → Islam (Final Seal). Restorer of the Faith of Abraham.</td>
+          <td>Restorationist Christianity ← 19th-Century American Protestantism.</td>
         </tr>
         <tr>
           <td><strong class="text-gold">🌊 RELEVANCE & LEGACY</strong></td>
           <td>1.3 billion. Largest institution. Shaped Western art, law, philosophy. Still based in Rome.</td>
           <td>~120,000. Doctrines of Angels/Satan/Messiah are Zoroastrian inventions found in all Abrahamic faiths.</td>
           <td>1.9 billion. World's fastest growing. Legacy in Algebra, Medicine, and Modern Legal Frameworks.</td>
+          <td>17 million. Fastest-growing modern-origin religion. Developed the American West. Global missionary force.</td>
         </tr>
       </tbody>
     </table>
@@ -1994,12 +2165,24 @@ main {
         <li>Re-internalizes the cosmic battle. It is no longer a political war fought by armored angels in the sky; it is an alchemical war fought within the human consciousness itself.</li>
         <li>The 'universal reformation' sought by the Brothers of the Rosy Cross is the ultimate internalization of the ancient Zoroastrian 'Frashokereti' (the world made wonderful).</li>
       </ul>
+      <div style="margin-top: 15px; text-align: right;"><strong class="text-gold">↓ THE FINAL FRONTIER (~1830 AD) ↓</strong></div>
+    </div>
+
+    <div style="background: rgba(245, 200, 66, 0.1); border-left: 4px solid var(--accent-gold); padding: 20px; border-radius: 4px; border: 1px solid var(--border); margin-left: 80px; transition: transform 0.2s ease;">
+      <div class="heading-22 text-gold">1830s CE: MORMONISM <div class="text-muted" style="font-size: 14px;">(The American Restoration)</div></div>
+      <p style="margin-top: 10px;">Joseph Smith claims that the 'Fluid Transfer' of authority was broken during a Great Apostasy. He restores the primitive Christian church on American soil, introducing a new sacred history of the continent:</p>
+      <ul style="margin-left: 20px;">
+        <li>The 'Book of Mormon' provides an ancient backstory for the Americas</li>
+        <li>The concept of 'Eternal Progression' maps a cosmic potential for humans to become divine</li>
+        <li>The movement creates a Zionic community that settles the American West, completing the 'Westward Expansion' of the Abrahamic thread</li>
+      </ul>
+      <div style="margin-top: 15px; text-align: center;"><strong class="text-gold">● THREAD COMPLETE ●</strong></div>
     </div>
 
   </div>
 
-  <div class="text-center mt-10">
-    <button class="btn-gold" style="width: 300px;" onclick="app.showScreen('screen8'); app.markSectionComplete('screen6');">VIEW HISTORICAL TIMELINE →</button>
+  <div class="text-center mt-10" style="margin-top: 50px;">
+    <button class="btn-gold" style="width: 350px;" onclick="app.showScreen('screen10')">VIEW CORE QUESTIONS SUMMARY →</button>
   </div>
 </div>
 <div id="screen7" class="screen" style="max-width: 800px; margin: 0 auto;">
@@ -2167,6 +2350,9 @@ main {
 
         <label class="text-rose" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; display:block; margin-bottom: 5px;">🌹 ROSICRUCIANISM NOTES</label>
         <textarea id="notes-rosicrucianism" style="width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-family: 'Inter', sans-serif;"></textarea>
+
+        <label class="text-gold" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; display:block; margin-bottom: 5px;">📜 MORMONISM NOTES</label>
+        <textarea id="notes-mormonism" style="width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-family: 'Inter', sans-serif;"></textarea>
         
         <button class="btn-small" style="width: 100%; border: 1px solid var(--border); background: transparent; color: var(--text-primary);" onclick="app.saveState(); alert('Notes saved locally.')">SAVE NOTES</button>
       </div>
@@ -2184,6 +2370,70 @@ main {
       </div>
     </div>
 
+  </div>
+</div>
+
+<div id="screen10" class="screen">
+  <div class="heading-36 text-center text-gold">FIVE CORE QUESTIONS</div>
+  <div class="heading-22 text-center text-muted">The Religare Framework Summary</div>
+  
+  <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    
+    <div class="card" style="padding: 25px; border-top: 4px solid var(--accent-gold);">
+      <div class="heading-22 text-gold">1. WHO FOUNDED IT?</div>
+      <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+        <p><strong>CATHOLICISM:</strong> Jesus / Constantine</p>
+        <p><strong>ZOROASTRIANISM:</strong> Zarathustra</p>
+        <p><strong>ISLAM:</strong> Muhammad</p>
+        <p><strong>MORMONISM:</strong> Joseph Smith Jr.</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 25px; border-top: 4 solid var(--accent-blue);">
+      <div class="heading-22 text-blue">2. SACRED TEXT?</div>
+      <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+        <p><strong>CATHOLICISM:</strong> The Bible</p>
+        <p><strong>ZOROASTRIANISM:</strong> The Avesta</p>
+        <p><strong>ISLAM:</strong> The Quran</p>
+        <p><strong>MORMONISM:</strong> Book of Mormon</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 25px; border-top: 4px solid var(--accent-fire);">
+      <div class="heading-22 text-fire">3. WHEN & WHERE?</div>
+      <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+        <p><strong>CATHOLICISM:</strong> ~30 AD, Rome</p>
+        <p><strong>ZOROASTRIANISM:</strong> 1500 BCE, Persia</p>
+        <p><strong>ISLAM:</strong> 610 CE, Arabia</p>
+        <p><strong>MORMONISM:</strong> 1830 CE, New York</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 25px; border-top: 4px solid var(--text-primary);">
+      <div class="heading-22 text-primary">4. COSMOLOGY?</div>
+      <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+        <p><strong>CATHOLICISM:</strong> Genesis / The Fall</p>
+        <p><strong>ZOROASTRIANISM:</strong> Dualism (Good vs Evil)</p>
+        <p><strong>ISLAM:</strong> Oneness (Tawhid)</p>
+        <p><strong>MORMONISM:</strong> Eternal Progression</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 25px; border-top: 4px solid var(--accent-gold);">
+      <div class="heading-22 text-gold">5. FUNCTIONAL GOAL?</div>
+      <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+        <p><strong>CATHOLICISM:</strong> Civilizational Order</p>
+        <p><strong>ZOROASTRIANISM:</strong> Universal Ethics</p>
+        <p><strong>ISLAM:</strong> Monotheistic Restoration</p>
+        <p><strong>MORMONISM:</strong> Zionic Community</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="text-center mt-10" style="margin-top: 50px;">
+    <button class="btn-small" onclick="app.showScreen('screen2')">← BACK TO HUB</button>
+    <button class="btn-gold" style="width: 250px; margin-left: 20px;" onclick="app.showScreen('screen9')">OPEN JOURNAL →</button>
   </div>
 </div>
 </main>
@@ -2356,6 +2606,32 @@ const QUIZ = [
     q: "The Islamic concept of 'Ghaflah' (Heedlessness) as the root of human error contrasts with the Catholic concept of:",
     options: ["Grace", "Scholasticism", "Original Sin", "Papal Infallibility"],
     a: 2, ext: "Religare Framework: In Catholicism, the problem is an ontological stain (Sin). In Islam, the problem is a cognitive/spiritual lapse (Heedlessness). One requires a cure; the other requires a reminder."
+  },
+  // MORMONISM
+  { category: 'mormonism', difficulty: 1, type: 'mc',
+    q: "Who is the founder of the Latter Day Saint movement?",
+    options: ["Brigham Young", "Joseph Smith Jr.", "John Wesley", "Charles Taze Russell"],
+    a: 1, ext: "Joseph Smith Jr. claimed to have received visions starting in 1820, leading to the restoration of the primitive church in 1830."
+  },
+  { category: 'mormonism', difficulty: 1, type: 'mc',
+    q: "In what year was the Book of Mormon first published?",
+    options: ["1776", "1820", "1830", "1847"],
+    a: 2, ext: "The Book of Mormon was first published in Palmyra, New York, in March 1830, just weeks before the church was formally organized."
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "The 'Burned-over District' refers to which geographical region?",
+    options: ["The Utah Desert", "Western and Central New York", "The Missouri Frontier", "The Ohio Valley"],
+    a: 1, ext: "This region was named for the 'fires' of religious revival during the Second Great Awakening that swept through it in the early 19th century."
+  },
+  { category: 'mormonism', difficulty: 2, type: 'mc',
+    q: "What is the core meaning of the doctrine of 'Eternal Progression'?",
+    options: ["Slow evolution of species", "The continuous growth of the church", "The belief that humans can ultimately become as God is", "The migration from New York to Utah"],
+    a: 2, ext: "A famous Mormon couplet states: 'As man now is, God once was: As God now is, man may be.'"
+  },
+  { category: 'mormonism', difficulty: 3, type: 'mc',
+    q: "The 'Plan of Salvation' describes human existence as having how many primary stages?",
+    options: ["One (Earthly life)", "Two (Life and Death)", "Three (Premortal, Mortal, Postmortal)", "Four (Earth, Hell, Purgatory, Heaven)"],
+    a: 2, ext: "The Religare Label 'Creation Myth' for Mormonism maps this journey from spirit child to mortal test to degreed glory."
   }
 ];
 
@@ -2461,7 +2737,7 @@ window.app = {
   renderNavStars() {
     const container = document.getElementById('nav-stars');
     if (!container) return;
-    const totalPossible = 15;
+    const totalPossible = 20; // Increased for Mormonism + new screens
     const earned = this.state.completedSections.length;
     let html = '';
     for (let i = 0; i < totalPossible; i++) {
@@ -2745,7 +3021,7 @@ window.app = {
     }
 
     // Notes
-    ['catholicism', 'zoroastrianism', 'rosicrucianism'].forEach(rel => {
+    ['catholicism', 'zoroastrianism', 'rosicrucianism', 'mormonism'].forEach(rel => {
       const ta = document.getElementById(`notes-${rel}`);
       if (ta) {
         ta.value = this.state[`notes_${rel}`] || '';
